@@ -17,6 +17,11 @@ enum ImageAsset: String {
     case ic_progress_1
     case ic_progress_2
     case ic_progress_3
+    case ic_home
+    case ic_home_selected
+    case ic_order
+    case ic_orders_selected
+    case ic_plus
 }
 
 extension UIImage {
@@ -29,10 +34,28 @@ extension UIImage {
     static let ic_progress_1: UIImage = .init(.ic_progress_1)
     static let ic_progress_2: UIImage = .init(.ic_progress_2)
     static let ic_progress_3: UIImage = .init(.ic_progress_3)
+    static let ic_home: UIImage = .init(.ic_home)
+    static let ic_home_selected: UIImage = .init(.ic_home_selected)
+    static let ic_order: UIImage = .init(.ic_order)
+    static let ic_orders_selected: UIImage = .init(.ic_orders_selected)
+    static let ic_plus: UIImage = .init(.ic_plus)
 }
 
 extension UIImage {
     private convenience init(_ asset: ImageAsset) {
         self.init(named: asset.rawValue)!
+    }
+    
+    public func resized(width: CGFloat, height: CGFloat) -> UIImage {
+        let size = CGSize(width: width, height: height)
+        let render = UIGraphicsImageRenderer(size: size)
+        let renderImage = render.image { context in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+        return renderImage
+    }
+    
+    public func resized(side: CGFloat) -> UIImage {
+        return self.resized(width: side, height: side)
     }
 }
