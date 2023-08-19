@@ -22,7 +22,6 @@ extension UICollectionView {
         _ supplementaryViewType: SupplementaryView.Type
     ) {
         let reuseIdentifier = String(describing: supplementaryViewType)
-        print("###", reuseIdentifier)
         self.register(
             supplementaryViewType,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -35,7 +34,6 @@ extension UICollectionView {
        for indexPath: IndexPath
    ) -> SupplementaryView? {
        let reuseIdentifier = String(describing: supplementaryViewType)
-       print("###", reuseIdentifier)
        return self.dequeueReusableSupplementaryView(
            ofKind: UICollectionView.elementKindSectionHeader,
            withReuseIdentifier: reuseIdentifier,
