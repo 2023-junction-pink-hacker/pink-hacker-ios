@@ -17,6 +17,7 @@ final class RegisterViewController: UIViewController {
     private let submitButton = UIButton(type: .system)
     private let titleLabel = UILabel()
     private let textView = DescriptionTextView()
+    private let summaryView = RecipeSummaryView()
     
     struct ViewModel {
         var pizzaName: String
@@ -82,6 +83,7 @@ final class RegisterViewController: UIViewController {
         containerView.addSubview(addButton)
         containerView.addSubview(titleLabel)
         containerView.addSubview(textView)
+        containerView.addSubview(summaryView)
         
         containerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -103,6 +105,11 @@ final class RegisterViewController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(48)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(97)
+        }
+        
+        summaryView.snp.makeConstraints { make in
+            make.top.equalTo(textView.snp.bottom).offset(16)
+            make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
         }
         
@@ -111,6 +118,8 @@ final class RegisterViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(70)
         }
+        
+        summaryView.apply()
     }
     
     @objc private func didTapAddButton() {
@@ -161,5 +170,100 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+final class RecipeSummaryView: UIView {
+    
+    var stackView: UIStackView!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    private func setupView() {
+        backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.93, alpha: 1)
+        layer.cornerRadius = 10.0
+        
+        let stackView = UIStackView()
+        stackView.spacing = 2.0
+        stackView.axis = .vertical
+        addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(20.0)
+        }
+        self.stackView = stackView
+    }
+    
+    func apply() {
+        let res = [["Dough", "Weat, Regular"], ["Sauce", "BBQ"], ["Cheese", "Cheddar"], ["Toppings", "Mushroom, Galic, Black Olives"]]
+        
+        let colors: [UIColor] = [UIColor(red: 0.89, green: 0.82, blue: 0.63, alpha: 1),
+                                 UIColor(red: 1, green: 0.52, blue: 0.37, alpha: 1),
+                                 UIColor(red: 1, green: 0.85, blue: 0.47, alpha: 1),
+                                 UIColor(red: 0.47, green: 0.77, blue: 0.5, alpha: 1)]
+        res.enumerated().forEach { (i, item) in
+            let v = appendItem(title: item.first!, description: item[1])
+            v.dot.backgroundColor = colors[i%colors.count]
+        }
+    }
+    
+    func appendItem(title: String, description: String) -> RecipeSummaryItemView {
+        let itemView = RecipeSummaryItemView()
+        itemView.titleLabel.text = title
+        itemView.subtitleLabel.text = description
+        stackView.addArrangedSubview(itemView)
+        return itemView
+    }
+}
+
+
+final class RecipeSummaryItemView: UIView {
+    var dot: ColoredDot!
+    var titleLabel: UILabel!
+    var subtitleLabel: UILabel!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    private func setupView() {
+        let stackView = UIStackView()
+        stackView.alignment = .center
+        addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0))
+        }
+        stackView.spacing = 8
+        
+        let dot = ColoredDot(color: .red)
+        dot.snp.makeConstraints {
+            $0.size.equalTo(12)
+        }
+        stackView.addArrangedSubview(dot)
+        self.dot = dot
+        
+        let titleLabel = UILabel(weight: .semibold, size: 16, color: .label0)
+        stackView.addArrangedSubview(titleLabel)
+        self.titleLabel = titleLabel
+        
+        let subtitleLabel = UILabel(weight: .medium, size: 16, color: UIColor(red: 0.69, green: 0.69, blue: 0.68, alpha: 1))
+        stackView.addArrangedSubview(subtitleLabel)
+        self.subtitleLabel = subtitleLabel
+        
+        let v = UIView()
+        stackView.addArrangedSubview(v)
     }
 }
