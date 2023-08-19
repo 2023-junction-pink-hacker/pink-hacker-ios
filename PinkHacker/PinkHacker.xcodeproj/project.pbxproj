@@ -12,6 +12,15 @@
 		0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD268C2A907A60004975C4 /* ViewController.swift */; };
 		0DBD26922A907A61004975C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DBD26912A907A61004975C4 /* Assets.xcassets */; };
 		0DBD26952A907A61004975C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBD26932A907A61004975C4 /* LaunchScreen.storyboard */; };
+		0DBD26A32A907DE3004975C4 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26A22A907DE3004975C4 /* UIButton+.swift */; };
+		0DBD26A52A907DF3004975C4 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26A42A907DF3004975C4 /* UICollectionView+.swift */; };
+		0DBD26A72A907EE8004975C4 /* UIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26A62A907EE8004975C4 /* UIConstant.swift */; };
+		0DBD26A92A907F2C004975C4 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26A82A907F2C004975C4 /* UIWindow+.swift */; };
+		0DBD26AB2A907F3E004975C4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26AA2A907F3E004975C4 /* UITableView+.swift */; };
+		0DBD26AE2A908082004975C4 /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26AD2A908082004975C4 /* Collection+.swift */; };
+		0DBD26B02A908094004975C4 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26AF2A908094004975C4 /* Int+.swift */; };
+		0DBD26B22A9080A8004975C4 /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26B12A9080A8004975C4 /* NSMutableAttributedString+.swift */; };
+		0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26B32A9080B4004975C4 /* Notification+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +31,15 @@
 		0DBD26912A907A61004975C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DBD26942A907A61004975C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DBD26962A907A61004975C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DBD26A22A907DE3004975C4 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		0DBD26A42A907DF3004975C4 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
+		0DBD26A62A907EE8004975C4 /* UIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstant.swift; sourceTree = "<group>"; };
+		0DBD26A82A907F2C004975C4 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
+		0DBD26AA2A907F3E004975C4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		0DBD26AD2A908082004975C4 /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		0DBD26AF2A908094004975C4 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		0DBD26B12A9080A8004975C4 /* NSMutableAttributedString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+.swift"; sourceTree = "<group>"; };
+		0DBD26B32A9080B4004975C4 /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,11 +91,52 @@
 		0DBD269D2A907CCD004975C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0DBD269E2A907DA6004975C4 /* Global */,
 				0DBD26882A907A60004975C4 /* AppDelegate.swift */,
 				0DBD268A2A907A60004975C4 /* SceneDelegate.swift */,
 				0DBD268C2A907A60004975C4 /* ViewController.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		0DBD269E2A907DA6004975C4 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				0DBD26A02A907DCA004975C4 /* Extension */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		0DBD26A02A907DCA004975C4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0DBD26AC2A90807A004975C4 /* Foundation+ */,
+				0DBD26A12A907DDA004975C4 /* UIKit+ */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0DBD26A12A907DDA004975C4 /* UIKit+ */ = {
+			isa = PBXGroup;
+			children = (
+				0DBD26A22A907DE3004975C4 /* UIButton+.swift */,
+				0DBD26A42A907DF3004975C4 /* UICollectionView+.swift */,
+				0DBD26A62A907EE8004975C4 /* UIConstant.swift */,
+				0DBD26A82A907F2C004975C4 /* UIWindow+.swift */,
+				0DBD26AA2A907F3E004975C4 /* UITableView+.swift */,
+			);
+			path = "UIKit+";
+			sourceTree = "<group>";
+		};
+		0DBD26AC2A90807A004975C4 /* Foundation+ */ = {
+			isa = PBXGroup;
+			children = (
+				0DBD26AD2A908082004975C4 /* Collection+.swift */,
+				0DBD26AF2A908094004975C4 /* Int+.swift */,
+				0DBD26B12A9080A8004975C4 /* NSMutableAttributedString+.swift */,
+				0DBD26B32A9080B4004975C4 /* Notification+.swift */,
+			);
+			path = "Foundation+";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +210,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */,
+				0DBD26B22A9080A8004975C4 /* NSMutableAttributedString+.swift in Sources */,
+				0DBD26AB2A907F3E004975C4 /* UITableView+.swift in Sources */,
+				0DBD26AE2A908082004975C4 /* Collection+.swift in Sources */,
+				0DBD26A92A907F2C004975C4 /* UIWindow+.swift in Sources */,
 				0DBD26892A907A60004975C4 /* AppDelegate.swift in Sources */,
 				0DBD268B2A907A60004975C4 /* SceneDelegate.swift in Sources */,
+				0DBD26A32A907DE3004975C4 /* UIButton+.swift in Sources */,
+				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
+				0DBD26B02A908094004975C4 /* Int+.swift in Sources */,
+				0DBD26A52A907DF3004975C4 /* UICollectionView+.swift in Sources */,
+				0DBD26A72A907EE8004975C4 /* UIConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
