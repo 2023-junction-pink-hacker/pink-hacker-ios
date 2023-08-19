@@ -49,11 +49,12 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
         }
         self.selectionButton = selectionButton
         
-        let descriptionLabel = UILabel()
+        let descriptionLabel = UILabel(weight: .semibold, color: UIColor(red: 0.31, green: 0.31, blue: 0.29, alpha: 1))
         contentView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalTo(selectionButton.snp.trailing).offset(8.0)
-            $0.centerY.equalTo(selectionButton)
+            $0.trailing.lessThanOrEqualToSuperview()
+            $0.centerY.equalTo(selectionButton.label)
         }
         self.descriptionLabel = descriptionLabel
         
@@ -95,7 +96,7 @@ final class RoundedSelectionButton: UIView {
         CGSize(width: UIView.noIntrinsicMetric, height: 34.0)
     }
     
-    var label: UILabel?
+    var label: UILabel!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -110,12 +111,12 @@ final class RoundedSelectionButton: UIView {
     private func setupView() {
         backgroundColor = UIColor(red: 0.92, green: 0.91, blue: 0.87, alpha: 1)
         
-        let label = UILabel()
+        let label = UILabel(weight: .semibold, color: UIColor(red: 0.76, green: 0.76, blue: 0.74, alpha: 1))
         label.textAlignment = .center
         label.text = "Selelct"
         addSubview(label)
         label.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 16.0, bottom: 0, right: 16))
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: -4, left: 16.0, bottom: 0, right: 16))
         }
         self.label = label
     }

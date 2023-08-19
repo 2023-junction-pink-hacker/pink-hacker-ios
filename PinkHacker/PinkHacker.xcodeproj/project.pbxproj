@@ -46,6 +46,7 @@
 		3B458BF92A911111003DAAD8 /* OrderTitleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BF82A911111003DAAD8 /* OrderTitleViewCell.swift */; };
 		3B458BFB2A91111E003DAAD8 /* ColoredDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BFA2A91111E003DAAD8 /* ColoredDot.swift */; };
 		3B458BFD2A91112C003DAAD8 /* OrderMultiSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BFC2A91112C003DAAD8 /* OrderMultiSelectionCell.swift */; };
+		3B458BFF2A9115E7003DAAD8 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		3B458BF82A911111003DAAD8 /* OrderTitleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTitleViewCell.swift; sourceTree = "<group>"; };
 		3B458BFA2A91111E003DAAD8 /* ColoredDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredDot.swift; sourceTree = "<group>"; };
 		3B458BFC2A91112C003DAAD8 /* OrderMultiSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMultiSelectionCell.swift; sourceTree = "<group>"; };
+		3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				3B458BCE2A90A544003DAAD8 /* UIApplication+.swift */,
 				0DEA9E872A909ACE002110CF /* UIImage+.swift */,
 				0DE321302A90C81700D8D9AC /* UIFont+.swift */,
+				3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */,
 			);
 			path = "UIKit+";
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B458BFF2A9115E7003DAAD8 /* UILabel+.swift in Sources */,
 				0DE3213C2A90D8FF00D8D9AC /* ApiRequest.swift in Sources */,
 				0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */,
 				0DE321312A90C81700D8D9AC /* UIFont+.swift in Sources */,
