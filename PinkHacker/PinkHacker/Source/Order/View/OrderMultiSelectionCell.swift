@@ -72,7 +72,6 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
     func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true) {
         descriptionLabel.text = item.description
         dot.isHidden = !shouldCornerTop
-        dot.backgroundColor = UIColor(red: 0.89, green: 0.82, blue: 0.63, alpha: 1)
         
         if shouldCornerTop {
             maskedCorners = .top
