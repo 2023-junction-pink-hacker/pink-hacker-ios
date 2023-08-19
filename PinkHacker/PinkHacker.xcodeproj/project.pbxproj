@@ -33,6 +33,7 @@
 		0DE321362A90CBBB00D8D9AC /* Gellix SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE321292A90C7FC00D8D9AC /* Gellix SemiBold.ttf */; };
 		0DE321372A90CBBB00D8D9AC /* Circular Spotify Tx T normal 700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE3212B2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 700.ttf */; };
 		0DE3213C2A90D8FF00D8D9AC /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE3213B2A90D8FF00D8D9AC /* ApiRequest.swift */; };
+		0DE321402A90DB1E00D8D9AC /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE3213F2A90DB1E00D8D9AC /* NicknameViewController.swift */; };
 		0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E872A909ACE002110CF /* UIImage+.swift */; };
 		0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */; };
 		0DEA9E8E2A90A400002110CF /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8D2A90A400002110CF /* MainTab.swift */; };
@@ -65,6 +66,7 @@
 		0DE3212D2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 500.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Spotify Tx T normal 500.ttf"; sourceTree = "<group>"; };
 		0DE321302A90C81700D8D9AC /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		0DE3213B2A90D8FF00D8D9AC /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		0DE3213F2A90DB1E00D8D9AC /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		0DEA9E872A909ACE002110CF /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0DEA9E8D2A90A400002110CF /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		0DBD269D2A907CCD004975C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0DE3213E2A90DB1300D8D9AC /* Nickname */,
 				0DEA9E8A2A90A31E002110CF /* MainTab */,
 				0DBD269E2A907DA6004975C4 /* Global */,
 				0DBD26882A907A60004975C4 /* AppDelegate.swift */,
@@ -191,6 +194,14 @@
 				0DE321282A90C7FC00D8D9AC /* Gellix Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0DE3213E2A90DB1300D8D9AC /* Nickname */ = {
+			isa = PBXGroup;
+			children = (
+				0DE3213F2A90DB1E00D8D9AC /* NicknameViewController.swift */,
+			);
+			path = Nickname;
 			sourceTree = "<group>";
 		};
 		0DEA9E8A2A90A31E002110CF /* MainTab */ = {
@@ -306,6 +317,7 @@
 				0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */,
 				0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */,
 				0DBD26B02A908094004975C4 /* Int+.swift in Sources */,
+				0DE321402A90DB1E00D8D9AC /* NicknameViewController.swift in Sources */,
 				0DBD26A52A907DF3004975C4 /* UICollectionView+.swift in Sources */,
 				3B458BD32A90D059003DAAD8 /* TestAPiRequest.swift in Sources */,
 				0DBD26A72A907EE8004975C4 /* UIConstant.swift in Sources */,

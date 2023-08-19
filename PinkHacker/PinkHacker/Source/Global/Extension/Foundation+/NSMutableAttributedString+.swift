@@ -17,7 +17,7 @@ public extension NSMutableAttributedString {
     struct PHAttributes {
         var weight: PHWeight
         var size: CGFloat
-        var textColor: UIColor
+        var textColor: UIColor?
         
         enum PHWeight {
             case gellix(GellixFontWeight)
@@ -25,7 +25,11 @@ public extension NSMutableAttributedString {
         }
     }
     
-    static func build(string: String?, attributes: PHAttributes) -> NSMutableAttributedString {
+    static func build(
+        string: String?,
+        attributes: PHAttributes,
+        customAttributes: [NSAttributedString.Key : Any]? = nil
+    ) -> NSMutableAttributedString {
         var stringAttributes: [NSAttributedString.Key: Any] = [:]
 
         var font: UIFont
@@ -36,6 +40,11 @@ public extension NSMutableAttributedString {
             font = UIFont.spotifyFont(weight: weight, size: attributes.size)
         }
         
+        if let customAttributes {
+            for customAttribute in customAttributes {
+                stringAttributes[customAttribute.key] = customAttribute.value
+            }
+        }
         stringAttributes[.font] = font
         stringAttributes[.foregroundColor] = attributes.textColor
         stringAttributes[.kern] = -0.2
@@ -49,18 +58,21 @@ protocol KernAppliable: AnyObject {
     
     func setText(
         _ string: String?,
-        attributes: NSMutableAttributedString.PHAttributes
+        attributes: NSMutableAttributedString.PHAttributes,
+        customAttributes: [NSAttributedString.Key : Any]?
     )
 }
 
 extension KernAppliable {
     func setText(
         _ string: String?,
-        attributes: NSMutableAttributedString.PHAttributes
+        attributes: NSMutableAttributedString.PHAttributes,
+        customAttributes: [NSAttributedString.Key : Any]? = nil
     ) {
         phAttributedString = NSMutableAttributedString.build(
             string: string,
-            attributes: attributes
+            attributes: attributes,
+            customAttributes: customAttributes
         )
     }
 }
