@@ -8,6 +8,12 @@
 import UIKit
 
 public extension NSMutableAttributedString {
+    func appending(string: String, attributes: PHAttributes) -> NSMutableAttributedString {
+        let newText = Self.build(string: string, attributes: attributes)
+        append(newText)
+        return self
+    }
+    
     func appending(string: String, attributes: [NSAttributedString.Key : Any]) -> NSMutableAttributedString {
         let text = NSAttributedString(string: string, attributes: attributes)
         append(text)
