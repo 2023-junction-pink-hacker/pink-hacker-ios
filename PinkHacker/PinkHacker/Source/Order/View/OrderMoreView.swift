@@ -14,6 +14,7 @@ final class OrderMoreView: UICollectionReusableView {
     }
     
     var label: UILabel!
+    var actionButton: UIButton!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -42,6 +43,13 @@ final class OrderMoreView: UICollectionReusableView {
         let label = UILabel(weight: .semibold, color: .label0)
         stackView.addArrangedSubview(label)
         self.label = label
+        
+        let actionButton = SizelessButton()
+        addSubview(actionButton)
+        actionButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.actionButton = actionButton
     }
 }
 

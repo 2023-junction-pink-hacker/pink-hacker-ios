@@ -55,6 +55,8 @@
 		3B458BFF2A9115E7003DAAD8 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */; };
 		3B458C012A911B32003DAAD8 /* OrderMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458C002A911B32003DAAD8 /* OrderMoreView.swift */; };
 		3B4CA39B2A912C4A00D807E0 /* OrderStepperFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */; };
+		3B4CA39D2A914D4D00D807E0 /* OrderSimpleTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */; };
+		3B4CA3A12A91510700D807E0 /* OrderCheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		3B458C002A911B32003DAAD8 /* OrderMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMoreView.swift; sourceTree = "<group>"; };
 		3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStepperFooter.swift; sourceTree = "<group>"; };
+		3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSimpleTitleCell.swift; sourceTree = "<group>"; };
+		3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCheckboxCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,8 @@
 				3B458BFC2A91112C003DAAD8 /* OrderMultiSelectionCell.swift */,
 				3B458C002A911B32003DAAD8 /* OrderMoreView.swift */,
 				3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */,
+				3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */,
+				3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B458BFF2A9115E7003DAAD8 /* UILabel+.swift in Sources */,
+				3B4CA39D2A914D4D00D807E0 /* OrderSimpleTitleCell.swift in Sources */,
 				0DE3213C2A90D8FF00D8D9AC /* ApiRequest.swift in Sources */,
 				0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */,
 				0DE321312A90C81700D8D9AC /* UIFont+.swift in Sources */,
@@ -413,6 +420,7 @@
 				3B458BFB2A91111E003DAAD8 /* ColoredDot.swift in Sources */,
 				0DBD26A32A907DE3004975C4 /* UIButton+.swift in Sources */,
 				3B4CA39B2A912C4A00D807E0 /* OrderStepperFooter.swift in Sources */,
+				3B4CA3A12A91510700D807E0 /* OrderCheckboxCell.swift in Sources */,
 				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
 				3B458C012A911B32003DAAD8 /* OrderMoreView.swift in Sources */,
 				0D24E78C2A91300700F95242 /* MyRecipeCell.swift in Sources */,

@@ -11,20 +11,16 @@ import Combine
 private struct OrderSection: Hashable {
     let type: OrderSectionType
     let dotColor: UIColor?
-    let title: String? // for Footer
     let count: Int? // for Footer
-    let regardsFooterAsCell: Bool
     
-    init(type: OrderSectionType, dotColor: UIColor? = nil, title: String? = nil, count: Int? = nil, regardsFooterAsCell: Bool = false) {
+    init(type: OrderSectionType, dotColor: UIColor? = nil, count: Int? = nil) {
         self.type = type
         self.dotColor = dotColor
-        self.title = title
         self.count = count
-        self.regardsFooterAsCell = regardsFooterAsCell
     }
     
     var hasFooter: Bool {
-        title != nil || count != nil
+        count != nil
     }
 }
 
@@ -77,17 +73,24 @@ class OrderViewController: UIViewController {
         snapshot.appendSections([OrderSection(type: .title)])
         snapshot.appendItems([OrderTitleItem()])
         
-        sections.append(.init(type: .multiSelection, dotColor: colors[0], title: "Add sauce type"))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0], title: "Add sauce type")])
+        sections.append(.init(type: .multiSelection, dotColor: colors[0]))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough with", options: ["wheat", "grain"])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough aa", options: ["wheat", "grain"])])
-        snapshot.appendItems([OrderMultiSelectionItem(description: "thickness", options: ["1.5", "2.0", "2.5"])])
-        dataSource.applySnapshotUsingReloadData(snapshot)
 
-        sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5, regardsFooterAsCell: true))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[1], count: 5)])
+        sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[2], count: 5)])
         snapshot.appendItems([OrderMultiSelectionItem(description: "cheese", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
+        
+        sections.append(.init(type: .multiSelection, dotColor: colors[2]))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[2])])
+        snapshot.appendItems([OrderMultiSelectionItem(description: "Toppings (optional)", options: []),
+                              OrderOptionalSelectionItem(description: "mushroom", count: 5),
+                              OrderOptionalSelectionItem(description: "pepperoni", count: 7),
+                              OrderOptionalSelectionItem(description: "sausage", count: 5)])
+        dataSource.applySnapshotUsingReloadData(snapshot)
+        
     }
 }
 
@@ -101,6 +104,8 @@ private extension OrderViewController {
         collectionView.registerCell(UICollectionViewCell.self)
         collectionView.registerCell(OrderTitleViewCell.self)
         collectionView.registerCell(OrderMultiSelectionCell.self)
+        collectionView.registerCell(OrderSimpleTitleCell.self)
+        collectionView.registerCell(OrderCheckboxCell.self)
         
         collectionView.register(OrderMoreView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: OrderMoreView.reuseIdentifier)
         collectionView.register(OrderStepperFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: OrderStepperFooter.reuseIdentifier)
@@ -113,19 +118,35 @@ private extension OrderViewController {
                 case .title:
                     return collectionView.dequeueCell(OrderTitleViewCell.self, for: indexPath)!
                 case .multiSelection:
-                    let cell = collectionView.dequeueCell(OrderMultiSelectionCell.self, for: indexPath)
-                    if let item = item as? OrderMultiSelectionItem {
-                        let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
-                        let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.regardsFooterAsCell
-                        cell?.dot.backgroundColor = section.dotColor
-                        cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
-                        cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
-                            if let actionSheet = cell?.actionSheet {
-                                self?.show(actionSheet, sender: nil)
+                    switch item {
+                    case let item as OrderMultiSelectionItem:
+                        if !item.options.isEmpty {
+                            let cell = collectionView.dequeueCell(OrderMultiSelectionCell.self, for: indexPath)
+                            let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
+                            let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.hasFooter
+                            cell?.dot.backgroundColor = section.dotColor
+                            cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
+                            cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
+                                if let actionSheet = cell?.actionSheet {
+                                    self?.show(actionSheet, sender: nil)
+                                }
                             }
+                            return cell
+                        } else {
+                            let cell = collectionView.dequeueCell(OrderSimpleTitleCell.self, for: indexPath)
+                            cell?.apply(item)
+                            cell?.dot.backgroundColor = section.dotColor
+                            return cell
                         }
+                    case let item as OrderOptionalSelectionItem:
+                        let cell = collectionView.dequeueCell(OrderCheckboxCell.self, for: indexPath)
+                        let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
+                        cell?.apply(item, shouldCornerBottom: numberOfItems - 1 == indexPath.item)
+                        return cell
+                    default:
+                        break
                     }
-                    return cell
+                    
                 }
             }
             return collectionView.dequeueCell(UICollectionViewCell.self, for: indexPath)
@@ -134,14 +155,11 @@ private extension OrderViewController {
             let section = self.sections[indexPath.section]
             switch kind {
             case UICollectionView.elementKindSectionFooter:
-                if let title = section.title {
-                    let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderMoreView.reuseIdentifier, for: indexPath)
-                    if let footer = footer as? OrderMoreView {
-                        footer.label.text = title
-                    }
-                    return footer
-                } else if let _ = section.count {
+                if let count = section.count {
                     let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderStepperFooter.reuseIdentifier, for: indexPath)
+                    if let footer = footer as? OrderStepperFooter {
+                        footer.stepper.value = count
+                    }
                     return footer
                 }
                 return nil
@@ -159,7 +177,7 @@ private extension OrderViewController {
                 case .title, .multiSelection:
                     let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
                     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(OrderTitleViewCell.height))
-                    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1)
                     let sectionLayout = NSCollectionLayoutSection(group: group)
                     sectionLayout.contentInsets = sectionInsets
                     
@@ -187,4 +205,22 @@ struct OrderMultiSelectionItem: Hashable {
     let description: String
     let options: [String]
     var selectedItem: String?
+}
+
+struct OrderOptionalSelectionItem: Hashable {
+    let description: String
+    var selected: Bool
+    
+    let options: [String]?
+    var selectedItem: String?
+    
+    var count: Int?
+    
+    init(description: String, selected: Bool = false, options: [String]? = nil, selectedItem: String? = nil, count: Int? = nil) {
+        self.description = description
+        self.selected = selected
+        self.options = options
+        self.selectedItem = selectedItem
+        self.count = count
+    }
 }
