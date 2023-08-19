@@ -107,6 +107,7 @@ extension RestaurantCell.ViewModel {
         
         if let date = dateFormatter.date(from: self.endTime) {
             dateFormatter.dateFormat = "h:mm a"
+            dateFormatter.locale = .init(identifier: "en")
             return dateFormatter.string(from: date)
         }
         return nil

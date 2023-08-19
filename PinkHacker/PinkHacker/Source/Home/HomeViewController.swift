@@ -135,6 +135,13 @@ extension HomeViewController: UICollectionViewDataSource {
         cell.configure(viewModel: dummies[indexPath.item])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = dummies[safe: indexPath.item] else { return }
+        let orderViewController = OrderViewController(viewType: .old(recipeName: item.title))
+        orderViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(orderViewController, animated: true)
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {

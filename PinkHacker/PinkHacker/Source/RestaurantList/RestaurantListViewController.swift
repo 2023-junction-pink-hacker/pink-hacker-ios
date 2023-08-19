@@ -10,6 +10,7 @@ import SnapKit
 import Then
 
 final class RestaurantListViewController: UIViewController {
+    private let naviBar = PHNaviBar(frame: .zero)
     private let titleLabel = UILabel()
     private let locationIconImageView = UIImageView()
     private let locationLabel = UILabel()
@@ -53,6 +54,9 @@ final class RestaurantListViewController: UIViewController {
 
 extension RestaurantListViewController {
     private func setupAttribute() {
+        naviBar.leftBarItem = .back
+        naviBar.title = ""
+        naviBar.leftButton.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
         view.backgroundColor = Const.backgroundColor
         titleLabel.setText(Const.title, attributes: Const.titleAttributes)
         locationIconImageView.image = UIImage(systemName: "location.fill")
@@ -102,6 +106,7 @@ extension RestaurantListViewController {
     }
     
     private func setupLayout() {
+        view.addSubview(naviBar)
         view.addSubview(titleLabel)
         view.addSubview(locationLabel)
         view.addSubview(locationIconImageView)
@@ -109,8 +114,12 @@ extension RestaurantListViewController {
         view.addSubview(warningLabel)
         view.addSubview(orderButton)
         
+        naviBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(naviBar.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         locationLabel.snp.makeConstraints { make in
@@ -135,6 +144,10 @@ extension RestaurantListViewController {
             make.directionalHorizontalEdges.equalToSuperview().inset(21)
             make.height.equalTo(57)
         }
+    }
+    
+    @objc private func didTapLeftButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

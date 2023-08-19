@@ -25,6 +25,7 @@ enum ImageAsset: String {
     case ic_time_home
     case ic_love
     case img_test_food
+    case img_splash
 }
 
 extension UIImage {
@@ -45,6 +46,7 @@ extension UIImage {
     static let ic_time_home: UIImage = .init(.ic_time_home)
     static let ic_love: UIImage = .init(.ic_love)
     static let img_test_food: UIImage = .init(.img_test_food)
+    static let img_splash: UIImage = .init(.img_splash)
 
 }
 

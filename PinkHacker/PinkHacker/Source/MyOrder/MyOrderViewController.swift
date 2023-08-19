@@ -55,7 +55,13 @@ final class MyOrderViewController: UIViewController {
                     else { return nil }
                     cell.configure(viewModel: viewModel)
                     cell.didTapButtonPublisher
-                        .sink { _ in }
+                        .sink { _ in
+                            guard let item = self.sections[safe: indexPath.section]?.items[safe: indexPath.item],
+                                  case let .myRecent(viewModel) = item
+                            else { return }
+                            let registerViewController = RegisterViewController(viewModel: .init(pizzaName: viewModel.title))
+                            self.navigationController?.pushViewController(registerViewController, animated: true)
+                        }
                         .store(in: &cell.bag)
                     return cell
                 case let .myRecipe(viewModel):
@@ -63,7 +69,13 @@ final class MyOrderViewController: UIViewController {
                     else { return nil }
                     cell.configure(viewModel: viewModel)
                     cell.didTapButtonPublisher
-                        .sink { _ in }
+                        .sink { _ in
+                            guard let item = self.sections[safe: indexPath.section]?.items[safe: indexPath.item],
+                                  case let .myRecipe(viewModel) = item
+                            else { return }
+                            let restarauntViewController = RestaurantListViewController()
+                            self.navigationController?.pushViewController(restarauntViewController, animated: true)
+                        }
                         .store(in: &cell.bag)
                     return cell
                 }
