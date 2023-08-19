@@ -98,6 +98,7 @@ final class OrderCheckboxCell: UICollectionViewCell {
                 self?.selectionButton.label.text = option
             })
         }
+//        actionSheet.addAction(UIAlertAction(title: "Close", style: .cancel))
         self.actionSheet = actionSheet
         
         checkboxButton.pressHandler { [weak self] _ in

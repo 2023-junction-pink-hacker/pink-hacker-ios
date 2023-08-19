@@ -37,6 +37,7 @@ class OrderViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: DataSource!
     private var sections: [OrderSection] = []
+    private var bottomBar: UIView!
     
     enum Section: Int {
         case main
@@ -71,6 +72,8 @@ class OrderViewController: UIViewController {
             $0.top.equalTo(naviBar.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
         }
+        self.collectionView = collectionView
+        
         naviBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
@@ -78,12 +81,25 @@ class OrderViewController: UIViewController {
         collectionView.backgroundColor = .clear
         naviBar.leftBarItem = .back
         naviBar.leftButton.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
-        self.collectionView = collectionView
         if case let .old(name) = viewType {
             naviBar.title = name
         } else {
             naviBar.title = "Order your own Recipe"
         }
+        
+        let bottomBarButton = UIButton()
+        bottomBarButton.backgroundColor = .black
+        view.addSubview(bottomBarButton)
+        bottomBarButton.snp.makeConstraints {
+            $0.leading.bottom.trailing.equalToSuperview()
+            $0.height.equalTo(72.0)
+        }
+        bottomBarButton.titleLabel?.font = UILabel(weight: .semibold, size: 19, color: .white).font
+        bottomBarButton.setTitle("Done", for: .normal)
+        bottomBarButton.pressHandler { [weak self] _ in
+            self?.navigationController?.pushViewController(RestaurantListViewController(), animated: true)
+        }
+        
         configureCollectionView()
         configureDataSource()
         
@@ -169,7 +185,7 @@ private extension OrderViewController {
                             cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
                             cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
                                 if let actionSheet = cell?.actionSheet {
-                                    self?.show(actionSheet, sender: nil)
+                                    self?.present(actionSheet, animated: true)
                                 }
                             }
                             return cell
@@ -185,7 +201,7 @@ private extension OrderViewController {
                         cell?.apply(item, shouldCornerBottom: numberOfItems - 1 == indexPath.item)
                         cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
                             if let actionSheet = cell?.actionSheet {
-                                self?.show(actionSheet, sender: nil)
+                                self?.present(actionSheet, animated: true)
                             }
                         }
                         return cell
