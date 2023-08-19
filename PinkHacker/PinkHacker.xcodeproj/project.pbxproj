@@ -48,6 +48,7 @@
 		3B458BFD2A91112C003DAAD8 /* OrderMultiSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BFC2A91112C003DAAD8 /* OrderMultiSelectionCell.swift */; };
 		3B458BFF2A9115E7003DAAD8 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */; };
 		3B458C012A911B32003DAAD8 /* OrderMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458C002A911B32003DAAD8 /* OrderMoreView.swift */; };
+		3B4CA39B2A912C4A00D807E0 /* OrderStepperFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		3B458BFC2A91112C003DAAD8 /* OrderMultiSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMultiSelectionCell.swift; sourceTree = "<group>"; };
 		3B458BFE2A9115E7003DAAD8 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		3B458C002A911B32003DAAD8 /* OrderMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMoreView.swift; sourceTree = "<group>"; };
+		3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStepperFooter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 				3B458BFA2A91111E003DAAD8 /* ColoredDot.swift */,
 				3B458BFC2A91112C003DAAD8 /* OrderMultiSelectionCell.swift */,
 				3B458C002A911B32003DAAD8 /* OrderMoreView.swift */,
+				3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				0DBD268B2A907A60004975C4 /* SceneDelegate.swift in Sources */,
 				3B458BFB2A91111E003DAAD8 /* ColoredDot.swift in Sources */,
 				0DBD26A32A907DE3004975C4 /* UIButton+.swift in Sources */,
+				3B4CA39B2A912C4A00D807E0 /* OrderStepperFooter.swift in Sources */,
 				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
 				3B458C012A911B32003DAAD8 /* OrderMoreView.swift in Sources */,
 				0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */,

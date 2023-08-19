@@ -8,9 +8,22 @@
 import UIKit
 import Combine
 
-private struct OrderSection {
+private struct OrderSection: Hashable {
     let type: OrderSectionType
-    let title: String?
+    let title: String? // for Footer
+    let count: Int? // for Footer
+    let regardsFooterAsCell: Bool
+    
+    init(type: OrderSectionType, title: String? = nil, count: Int? = nil, regardsFooterAsCell: Bool = false) {
+        self.type = type
+        self.title = title
+        self.count = count
+        self.regardsFooterAsCell = regardsFooterAsCell
+    }
+    
+    var hasFooter: Bool {
+        title != nil || count != nil
+    }
 }
 
 private enum OrderSectionType: Int {
@@ -52,24 +65,29 @@ class OrderViewController: UIViewController {
     
     private func loadData() {
         var snapshot = Snapshot()
-        sections.append(.init(type: .title, title: nil))
-        snapshot.appendSections([.title])
+        sections.append(.init(type: .title))
+        snapshot.appendSections([OrderSection(type: .title)])
         snapshot.appendItems([OrderTitleItem()])
         
         sections.append(.init(type: .multiSelection, title: "Add sauce type"))
-        snapshot.appendSections([.multiSelection])
+        snapshot.appendSections([OrderSection(type: .multiSelection, title: "Add sauce type")])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough with", options: ["wheat", "grain"])])
+        snapshot.appendItems([OrderMultiSelectionItem(description: "dough aa", options: ["wheat", "grain"])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "thickness", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
 
+        sections.append(.init(type: .multiSelection, count: 5, regardsFooterAsCell: true))
+        snapshot.appendSections([OrderSection(type: .multiSelection, count: 5)])
+        snapshot.appendItems([OrderMultiSelectionItem(description: "cheese", options: ["1.5", "2.0", "2.5"])])
+        dataSource.applySnapshotUsingReloadData(snapshot)
     }
 }
 
 // UICollectionView
 private extension OrderViewController {
     
-    typealias Snapshot = NSDiffableDataSourceSnapshot<OrderSectionType, AnyHashable>
-    typealias DataSource = UICollectionViewDiffableDataSource<OrderSectionType, AnyHashable>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<OrderSection, AnyHashable>
+    typealias DataSource = UICollectionViewDiffableDataSource<OrderSection, AnyHashable>
     
     func configureCollectionView() {
         collectionView.registerCell(UICollectionViewCell.self)
@@ -77,19 +95,21 @@ private extension OrderViewController {
         collectionView.registerCell(OrderMultiSelectionCell.self)
         
         collectionView.register(OrderMoreView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: OrderMoreView.reuseIdentifier)
+        collectionView.register(OrderStepperFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: OrderStepperFooter.reuseIdentifier)
     }
     
     func configureDataSource() {
         dataSource = DataSource(collectionView: collectionView) { [unowned self] collectionView, indexPath, item in
             if let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section] {
-                switch section {
+                switch section.type {
                 case .title:
                     return collectionView.dequeueCell(OrderTitleViewCell.self, for: indexPath)!
                 case .multiSelection:
                     let cell = collectionView.dequeueCell(OrderMultiSelectionCell.self, for: indexPath)
                     if let item = item as? OrderMultiSelectionItem {
                         let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
-                        cell?.apply(item, at: indexPath, numberOfItemsInSection: numberOfItems)
+                        let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.regardsFooterAsCell
+                        cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
                     }
                     return cell
                 }
@@ -98,15 +118,20 @@ private extension OrderViewController {
         }
         dataSource.supplementaryViewProvider = { [unowned self] collectionView, kind, indexPath in
             let section = self.sections[indexPath.section]
-            
-            if section.type == .multiSelection,
-               kind == UICollectionView.elementKindSectionFooter {
-                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderMoreView.reuseIdentifier, for: indexPath)
-                if let footer = footer as? OrderMoreView {
-                    footer.label.text = section.title
+            switch kind {
+            case UICollectionView.elementKindSectionFooter:
+                if let title = section.title {
+                    let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderMoreView.reuseIdentifier, for: indexPath)
+                    if let footer = footer as? OrderMoreView {
+                        footer.label.text = title
+                    }
+                    return footer
+                } else if let count = section.count {
+                    let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderStepperFooter.reuseIdentifier, for: indexPath)
+                    return footer
                 }
-                return footer
-            } else {
+                return nil
+            default:
                 return nil
             }
         }
@@ -124,7 +149,7 @@ private extension OrderViewController {
                     let sectionLayout = NSCollectionLayoutSection(group: group)
                     sectionLayout.contentInsets = sectionInsets
                     
-                    if section.type == .multiSelection {
+                    if section.hasFooter {
                         let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(54)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
                         sectionLayout.boundarySupplementaryItems = [footer]
                     }
