@@ -34,7 +34,7 @@ final class OrderTitleViewCell: UICollectionViewCell {
         layer.cornerRadius = 10.0
         layer.masksToBounds = true
         
-        let dot = ColoredDot(color: UIColor(red: 0.32, green: 0.32, blue: 0.32, alpha: 1))
+        let dot = ColoredDot(color: UIColor.label0)
         contentView.addSubview(dot)
         dot.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(18.0)
@@ -53,4 +53,8 @@ final class OrderTitleViewCell: UICollectionViewCell {
         }
         self.textfield = textfield
     }
+}
+
+extension UIColor {
+    static let label0 = UIColor(red: 0.32, green: 0.32, blue: 0.32, alpha: 1)
 }
