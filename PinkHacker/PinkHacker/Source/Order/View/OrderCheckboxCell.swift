@@ -17,6 +17,8 @@ final class OrderCheckboxCell: UICollectionViewCell {
     
     var bottomConstraint: Constraint?
     
+    var actionSheet: UIAlertController?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
@@ -89,6 +91,15 @@ final class OrderCheckboxCell: UICollectionViewCell {
             layer.maskedCorners = []
         }
         
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        item.options?.forEach { option in
+            actionSheet.addAction(UIAlertAction(title: option, style: .default) { [weak self] _ in
+                self?.selectionButton.label.text = option
+            })
+        }
+        self.actionSheet = actionSheet
+        
         checkboxButton.pressHandler { [weak self] _ in
             guard let self else { return }
             checkboxButton.isSelected.toggle()
@@ -113,6 +124,7 @@ final class SmallSelectionButton: UIView {
             label.textColor = enabled ? .label0 : UIColor(red: 0.76, green: 0.76, blue: 0.74, alpha: 1)
             arrowButton.isEnabled = enabled
             backgroundColor = enabled ? UIColor(red: 1, green: 1, blue: 0.96, alpha: 1) : UIColor(red: 0.93, green: 0.93, blue: 0.9, alpha: 1)
+            actionButton.isEnabled = enabled
         }
     }
     

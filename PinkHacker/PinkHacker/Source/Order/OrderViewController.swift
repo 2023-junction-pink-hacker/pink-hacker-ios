@@ -146,6 +146,11 @@ private extension OrderViewController {
                         let cell = collectionView.dequeueCell(OrderCheckboxCell.self, for: indexPath)
                         let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
                         cell?.apply(item, shouldCornerBottom: numberOfItems - 1 == indexPath.item)
+                        cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
+                            if let actionSheet = cell?.actionSheet {
+                                self?.show(actionSheet, sender: nil)
+                            }
+                        }
                         return cell
                     default:
                         break
