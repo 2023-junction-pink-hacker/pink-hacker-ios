@@ -9,28 +9,28 @@ import UIKit
 
 enum MainTab: Int, CaseIterable {
     case home
-    case myPage
+    case myOrder
 }
 
 extension MainTab {
     var title: String {
         switch self {
-        case .home: return "홈"
-        case .myPage: return "MY"
+        case .home: return "Home"
+        case .myOrder: return "Orders"
         }
     }
     
     var selectedIcon: UIImage? {
         switch self {
-        case .home: return UIImage(systemName: "")
-        case .myPage: return UIImage(systemName: "")
+        case .home: return .ic_home_selected.resized(width: 32, height: 32)
+        case .myOrder: return .ic_orders_selected.resized(width: 32, height: 32)
         }
     }
     
     var icon: UIImage? {
         switch self {
-        case .home: return UIImage(systemName: "")
-        case .myPage: return UIImage(systemName: "")
+        case .home: return .ic_home.resized(width: 32, height: 32)
+        case .myOrder: return .ic_order.resized(width: 32, height: 32)
         }
     }
 }
