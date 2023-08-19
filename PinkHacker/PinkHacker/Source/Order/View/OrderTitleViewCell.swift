@@ -13,6 +13,8 @@ final class OrderTitleViewCell: UICollectionViewCell {
     static let height = 56.0
     var textfield: UITextField!
     
+    private let placeholder = "Name your recipe"
+    
     override var intrinsicContentSize: CGSize {
         CGSize(width: UIView.noIntrinsicMetric, height: Self.height)
     }
@@ -41,7 +43,8 @@ final class OrderTitleViewCell: UICollectionViewCell {
         }
         
         let textfield = UITextField()
-        textfield.placeholder = "Name your recipe"
+        textfield.font = .gellizFont(weight: .semibold, size: 18)
+        textfield.attributedPlaceholder = NSAttributedString(string: placeholder)
         contentView.addSubview(textfield)
         textfield.snp.makeConstraints {
             $0.leading.equalTo(dot.snp.trailing).offset(16.0)
