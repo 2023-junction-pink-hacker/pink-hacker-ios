@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D008C242A91676400F10284 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C232A91676400F10284 /* RegisterViewController.swift */; };
+		0D008C262A91717200F10284 /* DescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C252A91717200F10284 /* DescriptionTextView.swift */; };
 		0D2397A92A915B59008E827E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2397A82A915B59008E827E /* HomeViewController.swift */; };
 		0D2397AB2A916001008E827E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2397AA2A916001008E827E /* FeedCell.swift */; };
 		0D24E78A2A912F9D00F95242 /* RecentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24E7892A912F9D00F95242 /* RecentOrderCell.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D008C232A91676400F10284 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0D008C252A91717200F10284 /* DescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTextView.swift; sourceTree = "<group>"; };
 		0D2397A82A915B59008E827E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0D2397AA2A916001008E827E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		0D24E7892A912F9D00F95242 /* RecentOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentOrderCell.swift; sourceTree = "<group>"; };
@@ -131,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D008C222A91675C00F10284 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0D008C232A91676400F10284 /* RegisterViewController.swift */,
+				0D008C252A91717200F10284 /* DescriptionTextView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		0D2397A72A915B4E008E827E /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +192,7 @@
 		0DBD269D2A907CCD004975C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0D008C222A91675C00F10284 /* Register */,
 				0D2397A72A915B4E008E827E /* Home */,
 				0DE3214F2A91221F00D8D9AC /* MyOrder */,
 				3B458BF42A9110DC003DAAD8 /* Order */,
@@ -425,6 +439,7 @@
 				0DBD26AE2A908082004975C4 /* Collection+.swift in Sources */,
 				0D24E7902A914B7500F95242 /* MyOrderTitleHeaderView.swift in Sources */,
 				0DE321532A91236F00D8D9AC /* MyOrderHeaderView.swift in Sources */,
+				0D008C242A91676400F10284 /* RegisterViewController.swift in Sources */,
 				0D24E78A2A912F9D00F95242 /* RecentOrderCell.swift in Sources */,
 				0D24E78E2A91327200F95242 /* MyOrderSection.swift in Sources */,
 				0DEA9E8E2A90A400002110CF /* MainTab.swift in Sources */,
@@ -444,6 +459,7 @@
 				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
 				3B458C012A911B32003DAAD8 /* OrderMoreView.swift in Sources */,
 				0D24E78C2A91300700F95242 /* MyRecipeCell.swift in Sources */,
+				0D008C262A91717200F10284 /* DescriptionTextView.swift in Sources */,
 				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
 				0DE321512A91223B00D8D9AC /* MyOrderViewController.swift in Sources */,
 				0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */,
