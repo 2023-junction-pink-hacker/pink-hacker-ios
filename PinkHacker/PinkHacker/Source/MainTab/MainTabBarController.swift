@@ -35,6 +35,12 @@ final class MainTabBarController: UITabBarController {
             return sizeThatFits
         }
     }
+    
+    @objc private func didTapUploadButton() {
+        let orderViewController = OrderViewController(viewType: .new)
+        orderViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(orderViewController, animated: true)
+    }
 }
 
 extension MainTabBarController {
@@ -50,7 +56,7 @@ extension MainTabBarController {
             $0.layer.cornerRadius = 30
             $0.layer.masksToBounds = true
             $0.setImage(.ic_plus, for: .normal)
-            
+            $0.addTarget(self, action: #selector(didTapUploadButton), for: .touchUpInside)
             view.addSubview($0)
         }
         self.uploadButton.snp.makeConstraints { make in

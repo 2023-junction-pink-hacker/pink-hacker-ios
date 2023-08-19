@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SnapKit
 
 private struct OrderSection: Hashable {
     let type: OrderSectionType
@@ -32,6 +33,7 @@ private enum OrderSectionType: Int {
 class OrderViewController: UIViewController {
     var cancellable: AnyCancellable?
     
+    private var naviBar = PHNaviBar(frame: .zero)
     private var collectionView: UICollectionView!
     private var dataSource: DataSource!
     private var sections: [OrderSection] = []
@@ -40,17 +42,48 @@ class OrderViewController: UIViewController {
         case main
     }
     
+    enum ViewType {
+        case new
+        case old(recipeName: String)
+    }
+
+    let viewType: ViewType
+    
+    init(viewType: ViewType) {
+        self.viewType = viewType
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Const.backgroundColor
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        view.addSubview(naviBar)
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(naviBar.snp.bottom)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
+        naviBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
+        }
+        collectionView.backgroundColor = .clear
+        naviBar.leftBarItem = .back
+        naviBar.leftButton.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
         self.collectionView = collectionView
-        
+        if case let .old(name) = viewType {
+            naviBar.title = name
+        } else {
+            naviBar.title = "Order your own Recipe"
+        }
         configureCollectionView()
         configureDataSource()
         
@@ -95,6 +128,10 @@ class OrderViewController: UIViewController {
         }
         dataSource.applySnapshotUsingReloadData(snapshot)
         
+    }
+    
+    @objc private func didTapLeftButton() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

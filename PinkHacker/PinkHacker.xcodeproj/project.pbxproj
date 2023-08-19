@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D008C242A91676400F10284 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C232A91676400F10284 /* RegisterViewController.swift */; };
 		0D008C262A91717200F10284 /* DescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C252A91717200F10284 /* DescriptionTextView.swift */; };
+		0D008C282A91772000F10284 /* PHNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C272A91772000F10284 /* PHNaviBar.swift */; };
 		0D2397A92A915B59008E827E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2397A82A915B59008E827E /* HomeViewController.swift */; };
 		0D2397AB2A916001008E827E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2397AA2A916001008E827E /* FeedCell.swift */; };
 		0D24E78A2A912F9D00F95242 /* RecentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24E7892A912F9D00F95242 /* RecentOrderCell.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		0D008C232A91676400F10284 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0D008C252A91717200F10284 /* DescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTextView.swift; sourceTree = "<group>"; };
+		0D008C272A91772000F10284 /* PHNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHNaviBar.swift; sourceTree = "<group>"; };
 		0D2397A82A915B59008E827E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0D2397AA2A916001008E827E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		0D24E7892A912F9D00F95242 /* RecentOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentOrderCell.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				0DBD26A02A907DCA004975C4 /* Extension */,
 				0DE3213B2A90D8FF00D8D9AC /* ApiRequest.swift */,
+				0D008C272A91772000F10284 /* PHNaviBar.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				0DBD26A92A907F2C004975C4 /* UIWindow+.swift in Sources */,
 				0DBD26892A907A60004975C4 /* AppDelegate.swift in Sources */,
 				0DE321472A90EFBD00D8D9AC /* RestaurantListViewController.swift in Sources */,
+				0D008C282A91772000F10284 /* PHNaviBar.swift in Sources */,
 				0DBD268B2A907A60004975C4 /* SceneDelegate.swift in Sources */,
 				0D2397A92A915B59008E827E /* HomeViewController.swift in Sources */,
 				3B458BFB2A91111E003DAAD8 /* ColoredDot.swift in Sources */,
