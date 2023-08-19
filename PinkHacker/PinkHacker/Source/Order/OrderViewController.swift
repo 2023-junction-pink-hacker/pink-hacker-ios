@@ -119,6 +119,11 @@ private extension OrderViewController {
                         let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.regardsFooterAsCell
                         cell?.dot.backgroundColor = section.dotColor
                         cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
+                        cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
+                            if let actionSheet = cell?.actionSheet {
+                                self?.show(actionSheet, sender: nil)
+                            }
+                        }
                     }
                     return cell
                 }
@@ -135,7 +140,7 @@ private extension OrderViewController {
                         footer.label.text = title
                     }
                     return footer
-                } else if let count = section.count {
+                } else if let _ = section.count {
                     let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderStepperFooter.reuseIdentifier, for: indexPath)
                     return footer
                 }
