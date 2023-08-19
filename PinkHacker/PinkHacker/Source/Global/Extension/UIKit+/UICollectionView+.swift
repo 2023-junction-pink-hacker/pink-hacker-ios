@@ -18,4 +18,29 @@ extension UICollectionView {
         return self.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? Cell
     }
     
+    func registerSupplementaryView<SupplementaryView: UICollectionReusableView>(
+        _ supplementaryViewType: SupplementaryView.Type
+    ) {
+        let reuseIdentifier = String(describing: supplementaryViewType)
+        print("###", reuseIdentifier)
+        self.register(
+            supplementaryViewType,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: reuseIdentifier
+        )
+    }
+    
+    func dequeueSupplementaryView<SupplementaryView: UICollectionReusableView>(
+       _ supplementaryViewType: SupplementaryView.Type,
+       for indexPath: IndexPath
+   ) -> SupplementaryView? {
+       let reuseIdentifier = String(describing: supplementaryViewType)
+       print("###", reuseIdentifier)
+       return self.dequeueReusableSupplementaryView(
+           ofKind: UICollectionView.elementKindSectionHeader,
+           withReuseIdentifier: reuseIdentifier,
+           for: indexPath
+       ) as? SupplementaryView
+   }
+   
 }

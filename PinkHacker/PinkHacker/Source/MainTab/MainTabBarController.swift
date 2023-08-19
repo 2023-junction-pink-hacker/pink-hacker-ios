@@ -38,8 +38,7 @@ extension MainTabBarController {
                 viewController = ViewController()
                 viewController.view.backgroundColor = .blue
             case .myPage:
-                viewController = UIViewController()
-                viewController.view.backgroundColor = .red
+                viewController = MyOrderViewController()
             }
             viewController.tabBarItem = tab.asTabBarItem()
             return viewController
