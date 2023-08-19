@@ -11,6 +11,13 @@ final class OrderStepperFooter: UICollectionReusableView {
     
     var label: UILabel!
     
+    var value = 0 {
+        didSet {
+            value = max(0, value)
+            label.text = "\(value)"
+        }
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
@@ -44,9 +51,15 @@ final class OrderStepperFooter: UICollectionReusableView {
         let label = UILabel(weight: .semibold, color: .label0)
         label.textAlignment = .center
         stackView.addArrangedSubview(label)
-        label.text = "5"
+        self.label = label
         
         let plusButton = UIButton(type: .system)
+        minusButton.pressHandler { [weak self] _ in
+            self?.value -= 1
+        }
+        plusButton.pressHandler { [weak self] _ in
+            self?.value += 1
+        }
         plusButton.setContentHuggingPriority(.required, for: .horizontal)
         plusButton.setImage(UIImage(named: "ic_plus_circle"), for: .normal)
         stackView.addArrangedSubview(plusButton)

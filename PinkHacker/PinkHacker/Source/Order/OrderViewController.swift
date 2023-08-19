@@ -140,8 +140,11 @@ private extension OrderViewController {
                         footer.label.text = title
                     }
                     return footer
-                } else if let _ = section.count {
+                } else if let count = section.count {
                     let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderStepperFooter.reuseIdentifier, for: indexPath)
+                    if let footer = footer as? OrderStepperFooter {
+                        footer.value = count
+                    }
                     return footer
                 }
                 return nil
