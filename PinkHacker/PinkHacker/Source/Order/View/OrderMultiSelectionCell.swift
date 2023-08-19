@@ -69,23 +69,23 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
         self.dot = dot
     }
     
-    func apply(_ item: OrderMultiSelectionItem, at indexPath: IndexPath, numberOfItemsInSection: Int) {
+    func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true) {
         descriptionLabel.text = item.description
-        dot.isHidden = indexPath.item != 0
+        dot.isHidden = !shouldCornerTop
         dot.backgroundColor = UIColor(red: 0.89, green: 0.82, blue: 0.63, alpha: 1)
         
-        if indexPath.item == 0 {
-            maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        if shouldCornerTop {
+            maskedCorners = .top
             topConstraints?.update(inset: 18.0)
             bottomConstraints?.update(inset: 5.0)
-        } else if indexPath.item == numberOfItemsInSection - 1 {
-            maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        } else if shouldCornerBottom {
+            maskedCorners = .bottom
             topConstraints?.update(inset: 5.0)
             bottomConstraints?.update(inset: 18.0)
         } else {
-            maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
-            topConstraints?.update(inset: 12)
-            bottomConstraints?.update(inset: 12)
+            maskedCorners = []
+            topConstraints?.update(inset: 12.0)
+            bottomConstraints?.update(inset: 12.0)
         }
     }
 }
@@ -125,5 +125,10 @@ final class RoundedSelectionButton: UIView {
         super.layoutSubviews()
         layer.cornerRadius = frame.height/2
     }
+}
+
+extension CACornerMask {
+    static let top: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    static let bottom: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 }
 
