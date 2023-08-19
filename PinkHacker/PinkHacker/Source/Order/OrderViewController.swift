@@ -77,15 +77,18 @@ class OrderViewController: UIViewController {
         snapshot.appendSections([OrderSection(type: .title)])
         snapshot.appendItems([OrderTitleItem()])
         
-        sections.append(.init(type: .multiSelection, dotColor: colors[0], title: "Add sauce type"))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0], title: "Add sauce type")])
+        sections.append(.init(type: .multiSelection, dotColor: colors[0]))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough with", options: ["wheat", "grain"])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough aa", options: ["wheat", "grain"])])
+        
+        sections.append(.init(type: .multiSelection, dotColor: colors[1], title: "Add sauce type"))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[1], title: "Add sauce type")])
         snapshot.appendItems([OrderMultiSelectionItem(description: "thickness", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
 
         sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5, regardsFooterAsCell: true))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[1], count: 5)])
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[2], count: 5)])
         snapshot.appendItems([OrderMultiSelectionItem(description: "cheese", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
     }
@@ -138,6 +141,10 @@ private extension OrderViewController {
                     let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderMoreView.reuseIdentifier, for: indexPath)
                     if let footer = footer as? OrderMoreView {
                         footer.label.text = title
+                        footer.actionButton.pressHandler { _ in
+//                            var snapshot = self.dataSource.snapshot()
+//                            snapshot.appendItems(<#T##identifiers: [AnyHashable]##[AnyHashable]#>)
+                        }
                     }
                     return footer
                 } else if let count = section.count {

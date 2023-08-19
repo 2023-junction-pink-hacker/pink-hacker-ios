@@ -74,8 +74,11 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
     func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true) {
         descriptionLabel.text = item.description
         dot.isHidden = !shouldCornerTop
-        
-        if shouldCornerTop {
+        if shouldCornerTop && shouldCornerBottom {
+            maskedCorners = [.top, .bottom]
+            topConstraints?.update(inset: 12.0)
+            bottomConstraints?.update(inset: 12.0)
+        } else if shouldCornerTop {
             maskedCorners = .top
             topConstraints?.update(inset: 18.0)
             bottomConstraints?.update(inset: 5.0)
