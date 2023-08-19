@@ -23,7 +23,7 @@ final class OrderCompleteViewController: UIViewController {
     private var viewModel: ViewModel?
     
     struct ViewModel {
-        var name: String
+        var pizzaName: String
         var endTime: String
     }
     
@@ -67,7 +67,7 @@ final class OrderCompleteViewController: UIViewController {
     func configure() {
         titleLabel.attributedText = NSMutableAttributedString()
             .appending(string:  "Your custom-made\n", attributes: Const.titleAttributes)
-            .appending(string: "\(viewModel?.name ?? "???")", attributes: Const.highlightedAttributes)
+            .appending(string: "\(viewModel?.pizzaName ?? "???")", attributes: Const.highlightedAttributes)
             .appending(string: "\norder has been placed", attributes: Const.titleAttributes)
         titleLabel.textAlignment = .center
         timeLabel.setText("\(viewModel?.time.0 ?? "??:??")", attributes: Const.timeAttributes)
@@ -78,6 +78,7 @@ final class OrderCompleteViewController: UIViewController {
 
 extension OrderCompleteViewController {
     private func setupAttribute() {
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = Const.backgroundColor
         titleLabel.numberOfLines = 0
         let title = NSMutableAttributedString.build(string: "View Order", attributes: Const.buttonTitleAttributes)

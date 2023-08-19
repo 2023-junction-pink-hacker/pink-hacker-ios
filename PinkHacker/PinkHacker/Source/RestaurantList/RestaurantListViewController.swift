@@ -18,9 +18,9 @@ final class RestaurantListViewController: UIViewController {
     private let orderButton = UIButton()
     
     private let dummies: [RestaurantCell.ViewModel] = [
-        .init(name: "Branch Name 1", time: "17:25", address: "168-7, Chaseongdong-ro, Gijang-eup, Gijang-gun"),
-        .init(name: "Branch Name 2", time: "17:37", address: "168-7, Chaseongdong-ro, Gijang-eup, Gijang-gun"),
-        .init(name: "Branch Name 3", time: "18:20", address: "168-7, Chaseongdong-ro, Gijang-eup, Gijang-gun"),
+        .init(name: "Branch Name 1", endTime: "17:25", address: "168-7, Chaseongdong-ro, Gijang-eup, Gijang-gun"),
+        .init(name: "Branch Name 2", endTime: "17:37", address: "168-7, Chaseongdong-ro, Gijang-eup, Gijang-gun"),
+        .init(name: "Branch Name 3", endTime: "18:20", address: "168-7, Chaseongdong-ro, Gijang-eup, Gijang-gun"),
     ]
     
     private var selectedRestaurant: RestaurantCell.ViewModel? {
@@ -36,7 +36,18 @@ final class RestaurantListViewController: UIViewController {
     }
     
     @objc private func didTapOrderButton() {
-        
+        guard let selectedRestaurant else { return }
+        let viewController = OrderCompleteViewController(
+            .init(
+                pizzaName: selectedRestaurant.name,
+                endTime: selectedRestaurant.endTime
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func didTapBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -81,6 +92,13 @@ extension RestaurantListViewController {
         warningLabel.setText(Const.warning, attributes: Const.warningAttributes)
         warningLabel.numberOfLines = 2
         warningLabel.textAlignment = .center
+        let backBarButton = UIBarButtonItem(
+            image: .ic_back,
+            style: .done,
+            target: self,
+            action: #selector(didTapBackButton)
+        )
+        self.navigationItem.backBarButtonItem = backBarButton
     }
     
     private func setupLayout() {

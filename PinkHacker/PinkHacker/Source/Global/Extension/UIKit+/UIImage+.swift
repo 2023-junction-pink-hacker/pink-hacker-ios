@@ -13,6 +13,7 @@ enum ImageAsset: String {
     case ic_down_arrow
     case img_pizza
     case ic_clock
+    case ic_back
 }
 
 extension UIImage {
@@ -21,6 +22,7 @@ extension UIImage {
     static let ic_down_arrow: UIImage = .init(.ic_down_arrow)
     static let img_pizza: UIImage = .init(.img_pizza)
     static let ic_clock: UIImage = .init(.ic_clock)
+    static let ic_back: UIImage = .init(.ic_back)
 }
 
 extension UIImage {

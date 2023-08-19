@@ -17,7 +17,7 @@ final class RestaurantCell: UICollectionViewCell {
     
     struct ViewModel {
         var name: String
-        var time: String
+        var endTime: String
         var address: String
     }
     
@@ -42,14 +42,16 @@ final class RestaurantCell: UICollectionViewCell {
     
     func configure(viewModel: ViewModel) {
         titleLabel.setText(viewModel.name, attributes: Const.titleAttributes)
-        timeLabel.setText(viewModel.time, attributes: Const.timeAttributes)
+        timeLabel.setText("\(viewModel.time ?? "00:00 am")", attributes: Const.timeAttributes)
         addressLabel.setText(viewModel.address, attributes: Const.addressAttributes)
     }
 }
 
 extension RestaurantCell {
     private func setupAttribute() {
-        timeImageView.image = .init(systemName: "timer")
+        let font = UIFont.boldSystemFont(ofSize: 15)
+        let configuration = UIImage.SymbolConfiguration.init(font: font)
+        timeImageView.image = .init(systemName: "timer")?.withConfiguration(configuration)
         timeImageView.tintColor = Const.timeIconColor
         contentView.backgroundColor = Const.backgroundColor
         contentView.layer.cornerRadius = 10
@@ -82,10 +84,8 @@ extension RestaurantCell {
             make.height.equalTo(19)
         }
         timeImageView.snp.makeConstraints { make in
-            make.width.equalTo(19)
-            make.height.equalTo(15)
             make.leading.equalTo(titleLabel.snp.trailing)
-            make.centerY.equalTo(timeLabel)
+            make.firstBaseline.equalTo(timeLabel)
         }
         timeLabel.snp.makeConstraints { make in
             make.leading.equalTo(timeImageView.snp.trailing).offset(2)
@@ -95,9 +95,21 @@ extension RestaurantCell {
         addressLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.directionalHorizontalEdges.equalToSuperview()
-//            make.bottom.equalToSuperview()
         }
         return containerView
+    }
+}
+
+extension RestaurantCell.ViewModel {
+    var time: String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        if let date = dateFormatter.date(from: self.endTime) {
+            dateFormatter.dateFormat = "h:mm a"
+            return dateFormatter.string(from: date)
+        }
+        return nil
     }
 }
 
