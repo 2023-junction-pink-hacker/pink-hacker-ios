@@ -88,6 +88,7 @@ class OrderViewController: UIViewController {
         snapshot.appendItems([OrderMultiSelectionItem(description: "Toppings (optional)", options: []),
                               OrderOptionalSelectionItem(description: "mushroom", count: 5),
                               OrderOptionalSelectionItem(description: "pepperoni", count: 7),
+                              OrderOptionalSelectionItem(description: "hello", options: ["a", "b"]),
                               OrderOptionalSelectionItem(description: "sausage", count: 5)])
         dataSource.applySnapshotUsingReloadData(snapshot)
         
