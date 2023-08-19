@@ -25,10 +25,17 @@
 		0DBD26BA2A909780004975C4 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26B92A909780004975C4 /* Then */; };
 		0DBD26BD2A909796004975C4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26BC2A909796004975C4 /* SnapKit */; };
 		0DBD26C02A909816004975C4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26BF2A909816004975C4 /* Alamofire */; };
-		3B458BCF2A90A544003DAAD8 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BCE2A90A544003DAAD8 /* UIApplication+.swift */; };
+		0DE321312A90C81700D8D9AC /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE321302A90C81700D8D9AC /* UIFont+.swift */; };
+		0DE321322A90CBBB00D8D9AC /* Circular Spotify Tx T normal 400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE3212A2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 400.ttf */; };
+		0DE321332A90CBBB00D8D9AC /* Circular Spotify Tx T normal 500.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE3212D2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 500.ttf */; };
+		0DE321342A90CBBB00D8D9AC /* Gellix Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE321282A90C7FC00D8D9AC /* Gellix Bold.ttf */; };
+		0DE321352A90CBBB00D8D9AC /* Gellix Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE3212C2A90C7FC00D8D9AC /* Gellix Medium.ttf */; };
+		0DE321362A90CBBB00D8D9AC /* Gellix SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE321292A90C7FC00D8D9AC /* Gellix SemiBold.ttf */; };
+		0DE321372A90CBBB00D8D9AC /* Circular Spotify Tx T normal 700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE3212B2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 700.ttf */; };
 		0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E872A909ACE002110CF /* UIImage+.swift */; };
 		0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */; };
 		0DEA9E8E2A90A400002110CF /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8D2A90A400002110CF /* MainTab.swift */; };
+		3B458BCF2A90A544003DAAD8 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BCE2A90A544003DAAD8 /* UIApplication+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,10 +55,17 @@
 		0DBD26AF2A908094004975C4 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		0DBD26B12A9080A8004975C4 /* NSMutableAttributedString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+.swift"; sourceTree = "<group>"; };
 		0DBD26B32A9080B4004975C4 /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
-		3B458BCE2A90A544003DAAD8 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
+		0DE321282A90C7FC00D8D9AC /* Gellix Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gellix Bold.ttf"; sourceTree = "<group>"; };
+		0DE321292A90C7FC00D8D9AC /* Gellix SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gellix SemiBold.ttf"; sourceTree = "<group>"; };
+		0DE3212A2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Spotify Tx T normal 400.ttf"; sourceTree = "<group>"; };
+		0DE3212B2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Spotify Tx T normal 700.ttf"; sourceTree = "<group>"; };
+		0DE3212C2A90C7FC00D8D9AC /* Gellix Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gellix Medium.ttf"; sourceTree = "<group>"; };
+		0DE3212D2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 500.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Spotify Tx T normal 500.ttf"; sourceTree = "<group>"; };
+		0DE321302A90C81700D8D9AC /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		0DEA9E872A909ACE002110CF /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0DEA9E8D2A90A400002110CF /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
+		3B458BCE2A90A544003DAAD8 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +111,7 @@
 		0DBD269C2A907CC8004975C4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0DE3212E2A90C80000D8D9AC /* Fonts */,
 				0DBD26962A907A61004975C4 /* Info.plist */,
 				0DBD26912A907A61004975C4 /* Assets.xcassets */,
 				0DBD26932A907A61004975C4 /* LaunchScreen.storyboard */,
@@ -143,6 +158,7 @@
 				0DBD26AA2A907F3E004975C4 /* UITableView+.swift */,
 				3B458BCE2A90A544003DAAD8 /* UIApplication+.swift */,
 				0DEA9E872A909ACE002110CF /* UIImage+.swift */,
+				0DE321302A90C81700D8D9AC /* UIFont+.swift */,
 			);
 			path = "UIKit+";
 			sourceTree = "<group>";
@@ -156,6 +172,19 @@
 				0DBD26B32A9080B4004975C4 /* Notification+.swift */,
 			);
 			path = "Foundation+";
+			sourceTree = "<group>";
+		};
+		0DE3212E2A90C80000D8D9AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0DE3212A2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 400.ttf */,
+				0DE3212D2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 500.ttf */,
+				0DE3212B2A90C7FC00D8D9AC /* Circular Spotify Tx T normal 700.ttf */,
+				0DE3212C2A90C7FC00D8D9AC /* Gellix Medium.ttf */,
+				0DE321292A90C7FC00D8D9AC /* Gellix SemiBold.ttf */,
+				0DE321282A90C7FC00D8D9AC /* Gellix Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		0DEA9E8A2A90A31E002110CF /* MainTab */ = {
@@ -237,7 +266,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DE321332A90CBBB00D8D9AC /* Circular Spotify Tx T normal 500.ttf in Resources */,
+				0DE321362A90CBBB00D8D9AC /* Gellix SemiBold.ttf in Resources */,
+				0DE321372A90CBBB00D8D9AC /* Circular Spotify Tx T normal 700.ttf in Resources */,
+				0DE321322A90CBBB00D8D9AC /* Circular Spotify Tx T normal 400.ttf in Resources */,
 				0DBD26952A907A61004975C4 /* LaunchScreen.storyboard in Resources */,
+				0DE321342A90CBBB00D8D9AC /* Gellix Bold.ttf in Resources */,
+				0DE321352A90CBBB00D8D9AC /* Gellix Medium.ttf in Resources */,
 				0DBD26922A907A61004975C4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */,
+				0DE321312A90C81700D8D9AC /* UIFont+.swift in Sources */,
 				0DBD26B22A9080A8004975C4 /* NSMutableAttributedString+.swift in Sources */,
 				3B458BCF2A90A544003DAAD8 /* UIApplication+.swift in Sources */,
 				0DBD26AB2A907F3E004975C4 /* UITableView+.swift in Sources */,

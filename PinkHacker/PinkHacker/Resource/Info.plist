@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gellix Bold.ttf</string>
+		<string>Gellix SemiBold.ttf</string>
+		<string>Gellix Medium.ttf</string>
+		<string>Circular Spotify Tx T normal 700.ttf</string>
+		<string>Circular Spotify Tx T normal 500.ttf</string>
+		<string>Circular Spotify Tx T normal 400.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
