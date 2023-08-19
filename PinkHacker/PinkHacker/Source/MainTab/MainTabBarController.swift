@@ -35,7 +35,7 @@ extension MainTabBarController {
             let viewController: UIViewController
             switch tab {
             case .home:
-                viewController = UIViewController()
+                viewController = ViewController()
                 viewController.view.backgroundColor = .blue
             case .myPage:
                 viewController = UIViewController()
