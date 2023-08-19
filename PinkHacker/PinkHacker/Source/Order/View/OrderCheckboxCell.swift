@@ -62,7 +62,14 @@ final class OrderCheckboxCell: UICollectionViewCell {
     }
     
     func apply(_ item: OrderOptionalSelectionItem, shouldCornerBottom: Bool = false) {
-        label.text = item.description
+        
+        if !item.description.isEmpty {
+            label.text = item.description
+            checkboxButton.isHidden = false
+        } else {
+            checkboxButton.isHidden = true
+            checkboxButton.isSelected = true
+        }
         
         if let count = item.count {
             stepper.isHidden = false

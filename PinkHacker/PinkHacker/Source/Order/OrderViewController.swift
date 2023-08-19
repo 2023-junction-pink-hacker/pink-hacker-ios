@@ -54,42 +54,45 @@ class OrderViewController: UIViewController {
         configureCollectionView()
         configureDataSource()
         
-        cancellable = TestAPIRequest().publisher().sink(receiveCompletion: { _ in },
-                                          receiveValue: { _ in
-            //
+        cancellable = OrderRequest(productId: 1).publisher().sink(receiveCompletion: { _ in },
+                                          receiveValue: { response in
+            self.loadData(steps: response.steps ?? [])
         })
-        self.loadData()
     }
     
-    private func loadData() {
+    private func loadData(steps: [OrderStepDataModel]) {
+        
+        var snapshot = Snapshot()
+        
+        sections.append(.init(type: .title))
+        snapshot.appendSections([OrderSection(type: .title)])
+        snapshot.appendItems([OrderTitleItem()])
         
         let colors: [UIColor] = [UIColor(red: 0.89, green: 0.82, blue: 0.63, alpha: 1),
                                  UIColor(red: 1, green: 0.52, blue: 0.37, alpha: 1),
                                  UIColor(red: 1, green: 0.85, blue: 0.47, alpha: 1),
                                  UIColor(red: 0.47, green: 0.77, blue: 0.5, alpha: 1)]
         
-        var snapshot = Snapshot()
-        sections.append(.init(type: .title))
-        snapshot.appendSections([OrderSection(type: .title)])
-        snapshot.appendItems([OrderTitleItem()])
-        
-        sections.append(.init(type: .multiSelection, dotColor: colors[0]))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0])])
-        snapshot.appendItems([OrderMultiSelectionItem(description: "dough with", options: ["wheat", "grain"])])
-        snapshot.appendItems([OrderMultiSelectionItem(description: "dough aa", options: ["wheat", "grain"])])
-
-        sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[2], count: 5)])
-        snapshot.appendItems([OrderMultiSelectionItem(description: "cheese", options: ["1.5", "2.0", "2.5"])])
-        dataSource.applySnapshotUsingReloadData(snapshot)
-        
-        sections.append(.init(type: .multiSelection, dotColor: colors[2]))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[2])])
-        snapshot.appendItems([OrderMultiSelectionItem(description: "Toppings (optional)", options: []),
-                              OrderOptionalSelectionItem(description: "mushroom", count: 5),
-                              OrderOptionalSelectionItem(description: "pepperoni", count: 7),
-                              OrderOptionalSelectionItem(description: "hello", options: ["a", "b"]),
-                              OrderOptionalSelectionItem(description: "sausage", count: 5)])
+        steps.enumerated().forEach { (i, step) in
+            let section = OrderSection(type: .multiSelection, dotColor: colors[i%colors.count])
+            let items: [AnyHashable]? = step.options?.compactMap { option in
+                switch option.type {
+                case .SELECT, .PLAIN:
+                    return OrderMultiSelectionItem(description: option.title ?? "", items: option.values ?? [])
+                case.AMOUNT:
+                    return OrderOptionalSelectionItem(description: option.title ?? "", count: option.values?.first.flatMap { Int($0.value) })
+                case .AMOUNT_THIRD:
+                    return OrderOptionalSelectionItem(description: option.title ?? "", items: option.values)
+                default:
+                    return nil
+                }
+            }
+            if let items, !items.isEmpty {
+                snapshot.appendSections([section])
+                sections.append(section)
+                snapshot.appendItems(items)
+            }
+        }
         dataSource.applySnapshotUsingReloadData(snapshot)
         
     }
@@ -204,23 +207,30 @@ struct OrderTitleItem: Hashable {
 
 struct OrderMultiSelectionItem: Hashable {
     let description: String
-    let options: [String]
+    let items: [SimpleStringDataModel]
     var selectedItem: String?
+    
+    var options: [String] {
+        items.map { $0.value }
+    }
 }
 
 struct OrderOptionalSelectionItem: Hashable {
     let description: String
     var selected: Bool
     
-    let options: [String]?
+    let items: [SimpleStringDataModel]?
     var selectedItem: String?
     
     var count: Int?
     
-    init(description: String, selected: Bool = false, options: [String]? = nil, selectedItem: String? = nil, count: Int? = nil) {
+    var options: [String]? {
+        items?.map { $0.value }
+    }
+    init(description: String, selected: Bool = false, items: [SimpleStringDataModel]? = nil, selectedItem: String? = nil, count: Int? = nil) {
         self.description = description
         self.selected = selected
-        self.options = options
+        self.items = items
         self.selectedItem = selectedItem
         self.count = count
     }

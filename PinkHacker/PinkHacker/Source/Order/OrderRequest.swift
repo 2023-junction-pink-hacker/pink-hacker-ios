@@ -8,8 +8,8 @@
 import Foundation
 
 final class OrderRequest: APIRequest<OrderResponse> {
-    init() {
-        super.init(path: "/test")
+    init(productId: Int) {
+        super.init(path: "/api/steps/products/\(productId)")
     }
 }
 
@@ -28,17 +28,18 @@ struct OrderStepDataModel: Codable {
 struct OrderOptionDataModel: Codable {
     
     enum OptionType: String, Codable {
-        case select = "SELECT"
-        case plain = "PLAIN"
-        case amount = "AMOUNT"
+        case SELECT
+        case PLAIN
+        case AMOUNT
+        case AMOUNT_THIRD
     }
     let id: Int
     let type: OptionType?
     let title: String?
-    let values: [SimpleStringDataModel]
+    let values: [SimpleStringDataModel]?
 }
 
-struct SimpleStringDataModel: Codable {
+struct SimpleStringDataModel: Codable, Hashable {
     let id: Int
     let value: String
 }
