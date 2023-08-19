@@ -21,6 +21,10 @@
 		0DBD26B02A908094004975C4 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26AF2A908094004975C4 /* Int+.swift */; };
 		0DBD26B22A9080A8004975C4 /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26B12A9080A8004975C4 /* NSMutableAttributedString+.swift */; };
 		0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD26B32A9080B4004975C4 /* Notification+.swift */; };
+		0DBD26B72A90975A004975C4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26B62A90975A004975C4 /* Kingfisher */; };
+		0DBD26BA2A909780004975C4 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26B92A909780004975C4 /* Then */; };
+		0DBD26BD2A909796004975C4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26BC2A909796004975C4 /* SnapKit */; };
+		0DBD26C02A909816004975C4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBD26BF2A909816004975C4 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBD26BD2A909796004975C4 /* SnapKit in Frameworks */,
+				0DBD26C02A909816004975C4 /* Alamofire in Frameworks */,
+				0DBD26B72A90975A004975C4 /* Kingfisher in Frameworks */,
+				0DBD26BA2A909780004975C4 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +163,12 @@
 			dependencies = (
 			);
 			name = PinkHacker;
+			packageProductDependencies = (
+				0DBD26B62A90975A004975C4 /* Kingfisher */,
+				0DBD26B92A909780004975C4 /* Then */,
+				0DBD26BC2A909796004975C4 /* SnapKit */,
+				0DBD26BF2A909816004975C4 /* Alamofire */,
+			);
 			productName = PinkHacker;
 			productReference = 0DBD26852A907A60004975C4 /* PinkHacker.app */;
 			productType = "com.apple.product-type.application";
@@ -183,6 +197,12 @@
 				Base,
 			);
 			mainGroup = 0DBD267C2A907A60004975C4;
+			packageReferences = (
+				0DBD26B52A90975A004975C4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				0DBD26B82A909780004975C4 /* XCRemoteSwiftPackageReference "Then" */,
+				0DBD26BB2A909796004975C4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0DBD26BE2A909816004975C4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 0DBD26862A907A60004975C4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -363,8 +383,7 @@
 				INFOPLIST_FILE = PinkHacker/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,8 +408,7 @@
 				INFOPLIST_FILE = PinkHacker/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,6 +444,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0DBD26B52A90975A004975C4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		0DBD26B82A909780004975C4 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		0DBD26BB2A909796004975C4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0DBD26BE2A909816004975C4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0DBD26B62A90975A004975C4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DBD26B52A90975A004975C4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		0DBD26B92A909780004975C4 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DBD26B82A909780004975C4 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		0DBD26BC2A909796004975C4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DBD26BB2A909796004975C4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0DBD26BF2A909816004975C4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DBD26BE2A909816004975C4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DBD267D2A907A60004975C4 /* Project object */;
 }
