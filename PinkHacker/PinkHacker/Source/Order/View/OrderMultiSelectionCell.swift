@@ -17,6 +17,8 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
     var topConstraints: Constraint?
     var bottomConstraints: Constraint?
     
+    var actionSheet: UIAlertController?
+    
     var maskedCorners: CACornerMask? {
         didSet {
             if let maskedCorners {
@@ -72,7 +74,6 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
     func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true) {
         descriptionLabel.text = item.description
         dot.isHidden = !shouldCornerTop
-        dot.backgroundColor = UIColor(red: 0.89, green: 0.82, blue: 0.63, alpha: 1)
         
         if shouldCornerTop {
             maskedCorners = .top
@@ -87,6 +88,16 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
             topConstraints?.update(inset: 12.0)
             bottomConstraints?.update(inset: 12.0)
         }
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        item.options.forEach { option in
+            actionSheet.addAction(UIAlertAction(title: option, style: .default) { [weak self] _ in
+                self?.selectionButton.label.text = option
+                self?.selectionButton.selected = true
+            })
+        }
+        self.actionSheet = actionSheet
     }
 }
 
@@ -97,6 +108,13 @@ final class RoundedSelectionButton: UIView {
     }
     
     var label: UILabel!
+    var actionButton: UIButton!
+    
+    var selected: Bool = false {
+        didSet {
+            label.textColor = selected ? .label0 : UIColor(red: 0.76, green: 0.76, blue: 0.74, alpha: 1)
+        }
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -119,6 +137,13 @@ final class RoundedSelectionButton: UIView {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: -4, left: 16.0, bottom: 0, right: 16))
         }
         self.label = label
+        
+        let actionButton = SizelessButton()
+        addSubview(actionButton)
+        actionButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.actionButton = actionButton
     }
     
     override func layoutSubviews() {
@@ -132,3 +157,21 @@ extension CACornerMask {
     static let bottom: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 }
 
+class SizelessButton: UIButton {
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
+    }
+}
+
+typealias UIButtonPressHandler = (UIButton?) -> Void
+
+extension UIButton {
+    func pressHandler(_ handler: UIButtonPressHandler?) {
+        if let handler {
+            addAction(UIAction(identifier: .init("press_handler"), handler: {
+                handler($0.sender as? UIButton)
+            }), for: .touchUpInside)
+        }
+    }
+}

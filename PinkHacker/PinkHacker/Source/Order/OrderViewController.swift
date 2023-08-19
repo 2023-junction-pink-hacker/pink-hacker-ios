@@ -10,12 +10,14 @@ import Combine
 
 private struct OrderSection: Hashable {
     let type: OrderSectionType
+    let dotColor: UIColor?
     let title: String? // for Footer
     let count: Int? // for Footer
     let regardsFooterAsCell: Bool
     
-    init(type: OrderSectionType, title: String? = nil, count: Int? = nil, regardsFooterAsCell: Bool = false) {
+    init(type: OrderSectionType, dotColor: UIColor? = nil, title: String? = nil, count: Int? = nil, regardsFooterAsCell: Bool = false) {
         self.type = type
+        self.dotColor = dotColor
         self.title = title
         self.count = count
         self.regardsFooterAsCell = regardsFooterAsCell
@@ -64,20 +66,26 @@ class OrderViewController: UIViewController {
     }
     
     private func loadData() {
+        
+        let colors: [UIColor] = [UIColor(red: 0.89, green: 0.82, blue: 0.63, alpha: 1),
+                                 UIColor(red: 1, green: 0.52, blue: 0.37, alpha: 1),
+                                 UIColor(red: 1, green: 0.85, blue: 0.47, alpha: 1),
+                                 UIColor(red: 0.47, green: 0.77, blue: 0.5, alpha: 1)]
+        
         var snapshot = Snapshot()
         sections.append(.init(type: .title))
         snapshot.appendSections([OrderSection(type: .title)])
         snapshot.appendItems([OrderTitleItem()])
         
-        sections.append(.init(type: .multiSelection, title: "Add sauce type"))
-        snapshot.appendSections([OrderSection(type: .multiSelection, title: "Add sauce type")])
+        sections.append(.init(type: .multiSelection, dotColor: colors[0], title: "Add sauce type"))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0], title: "Add sauce type")])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough with", options: ["wheat", "grain"])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough aa", options: ["wheat", "grain"])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "thickness", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
 
-        sections.append(.init(type: .multiSelection, count: 5, regardsFooterAsCell: true))
-        snapshot.appendSections([OrderSection(type: .multiSelection, count: 5)])
+        sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5, regardsFooterAsCell: true))
+        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[1], count: 5)])
         snapshot.appendItems([OrderMultiSelectionItem(description: "cheese", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
     }
@@ -109,7 +117,13 @@ private extension OrderViewController {
                     if let item = item as? OrderMultiSelectionItem {
                         let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
                         let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.regardsFooterAsCell
+                        cell?.dot.backgroundColor = section.dotColor
                         cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
+                        cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
+                            if let actionSheet = cell?.actionSheet {
+                                self?.show(actionSheet, sender: nil)
+                            }
+                        }
                     }
                     return cell
                 }
@@ -126,7 +140,7 @@ private extension OrderViewController {
                         footer.label.text = title
                     }
                     return footer
-                } else if let count = section.count {
+                } else if let _ = section.count {
                     let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderStepperFooter.reuseIdentifier, for: indexPath)
                     return footer
                 }
