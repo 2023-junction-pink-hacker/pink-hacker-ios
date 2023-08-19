@@ -13,6 +13,7 @@ final class OrderCheckboxCell: UICollectionViewCell {
     var checkboxButton: UIButton!
     var label: UILabel!
     var stepper: StepperView!
+    var selectionButton: SmallSelectionButton!
     
     var bottomConstraint: Constraint?
     
@@ -53,12 +54,34 @@ final class OrderCheckboxCell: UICollectionViewCell {
         stackView.addArrangedSubview(stepper)
         stepper.setContentHuggingPriority(.required, for: .horizontal)
         self.stepper = stepper
+        
+        let selectionButton = SmallSelectionButton()
+        selectionButton.isHidden = true
+        stackView.addArrangedSubview(selectionButton)
+        self.selectionButton = selectionButton
     }
     
     func apply(_ item: OrderOptionalSelectionItem, shouldCornerBottom: Bool = false) {
-        label.text = item.description
-        stepper.value = item.count ?? 0
-        stepper.enabled = checkboxButton.isSelected
+        
+        if !item.description.isEmpty {
+            label.text = item.description
+            checkboxButton.isHidden = false
+        } else {
+            checkboxButton.isHidden = true
+            checkboxButton.isSelected = true
+        }
+        
+        if let count = item.count {
+            stepper.isHidden = false
+            selectionButton.isHidden = true
+            stepper.value = count
+            stepper.enabled = checkboxButton.isSelected
+        } else {
+            stepper.isHidden = true
+            selectionButton.isHidden = false
+            selectionButton.enabled = checkboxButton.isSelected
+            selectionButton.label.text = item.options?.first ?? ""
+        }
         
         if shouldCornerBottom {
             layer.maskedCorners = .bottom
@@ -70,6 +93,74 @@ final class OrderCheckboxCell: UICollectionViewCell {
             guard let self else { return }
             checkboxButton.isSelected.toggle()
             stepper.enabled = checkboxButton.isSelected
+            selectionButton.enabled = checkboxButton.isSelected
         }
+    }
+}
+
+final class SmallSelectionButton: UIView {
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: 112, height: 29)
+    }
+    
+    var label: UILabel!
+    var arrowButton: UIButton!
+    var actionButton: UIButton!
+
+    var enabled: Bool = false {
+        didSet {
+            label.textColor = enabled ? .label0 : UIColor(red: 0.76, green: 0.76, blue: 0.74, alpha: 1)
+            arrowButton.isEnabled = enabled
+            backgroundColor = enabled ? UIColor(red: 1, green: 1, blue: 0.96, alpha: 1) : UIColor(red: 0.93, green: 0.93, blue: 0.9, alpha: 1)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    private func setupView() {
+        let stackView = UIStackView()
+        stackView.alignment = .lastBaseline
+        addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 15))
+        }
+        
+        let label = UILabel(weight: .semibold, color: .label0)
+        label.textAlignment = .center
+        label.baselineAdjustment = .alignBaselines
+        stackView.addArrangedSubview(label)
+        self.label = label
+        
+        let arrowButton = UIButton()
+        arrowButton.setContentHuggingPriority(.required, for: .horizontal)
+        arrowButton.setImage(UIImage(named: "ic_arrow_bottom_enabled"), for: .normal)
+        arrowButton.setImage(UIImage(named: "ic_arrow_bottom"), for: .disabled)
+        stackView.addArrangedSubview(arrowButton)
+        self.arrowButton = arrowButton
+        
+        let actionButton = SizelessButton()
+        addSubview(actionButton)
+        actionButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.actionButton = actionButton
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = frame.height/2
+    }
+    
+    func apply() {
+        enabled = true
     }
 }

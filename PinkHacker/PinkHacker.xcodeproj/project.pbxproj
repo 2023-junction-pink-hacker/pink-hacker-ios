@@ -57,6 +57,7 @@
 		3B4CA39B2A912C4A00D807E0 /* OrderStepperFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */; };
 		3B4CA39D2A914D4D00D807E0 /* OrderSimpleTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */; };
 		3B4CA3A12A91510700D807E0 /* OrderCheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */; };
+		3B4CA3A32A9161D400D807E0 /* OrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA3A22A9161D400D807E0 /* OrderRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		3B4CA39A2A912C4A00D807E0 /* OrderStepperFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStepperFooter.swift; sourceTree = "<group>"; };
 		3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSimpleTitleCell.swift; sourceTree = "<group>"; };
 		3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCheckboxCell.swift; sourceTree = "<group>"; };
+		3B4CA3A22A9161D400D807E0 /* OrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 			children = (
 				3B458BF72A911109003DAAD8 /* View */,
 				3B458BF52A9110EF003DAAD8 /* OrderViewController.swift */,
+				3B4CA3A22A9161D400D807E0 /* OrderRequest.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			files = (
 				3B458BFF2A9115E7003DAAD8 /* UILabel+.swift in Sources */,
 				3B4CA39D2A914D4D00D807E0 /* OrderSimpleTitleCell.swift in Sources */,
+				3B4CA3A32A9161D400D807E0 /* OrderRequest.swift in Sources */,
 				0DE3213C2A90D8FF00D8D9AC /* ApiRequest.swift in Sources */,
 				0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */,
 				0DE321312A90C81700D8D9AC /* UIFont+.swift in Sources */,
