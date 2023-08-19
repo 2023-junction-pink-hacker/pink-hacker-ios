@@ -100,6 +100,7 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
                 self?.selectionButton.selected = true
             })
         }
+        actionSheet.addAction(UIAlertAction(title: "Close", style: .cancel))
         self.actionSheet = actionSheet
     }
 }
