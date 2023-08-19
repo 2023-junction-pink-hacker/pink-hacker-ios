@@ -35,6 +35,7 @@
 		0DE3213C2A90D8FF00D8D9AC /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE3213B2A90D8FF00D8D9AC /* ApiRequest.swift */; };
 		0DE321402A90DB1E00D8D9AC /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE3213F2A90DB1E00D8D9AC /* NicknameViewController.swift */; };
 		0DE321472A90EFBD00D8D9AC /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE321462A90EFBD00D8D9AC /* RestaurantListViewController.swift */; };
+		0DE321492A90F72400D8D9AC /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE321482A90F72400D8D9AC /* RestaurantCell.swift */; };
 		0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E872A909ACE002110CF /* UIImage+.swift */; };
 		0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */; };
 		0DEA9E8E2A90A400002110CF /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8D2A90A400002110CF /* MainTab.swift */; };
@@ -69,6 +70,7 @@
 		0DE3213B2A90D8FF00D8D9AC /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		0DE3213F2A90DB1E00D8D9AC /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		0DE321462A90EFBD00D8D9AC /* RestaurantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
+		0DE321482A90F72400D8D9AC /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		0DEA9E872A909ACE002110CF /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0DEA9E8D2A90A400002110CF /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				0DE321462A90EFBD00D8D9AC /* RestaurantListViewController.swift */,
+				0DE321482A90F72400D8D9AC /* RestaurantCell.swift */,
 			);
 			path = RestaurantList;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				0DBD26AB2A907F3E004975C4 /* UITableView+.swift in Sources */,
 				0DBD26AE2A908082004975C4 /* Collection+.swift in Sources */,
 				0DEA9E8E2A90A400002110CF /* MainTab.swift in Sources */,
+				0DE321492A90F72400D8D9AC /* RestaurantCell.swift in Sources */,
 				0DBD26A92A907F2C004975C4 /* UIWindow+.swift in Sources */,
 				0DBD26892A907A60004975C4 /* AppDelegate.swift in Sources */,
 				0DE321472A90EFBD00D8D9AC /* RestaurantListViewController.swift in Sources */,
