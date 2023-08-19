@@ -13,12 +13,12 @@ final class NicknameViewController: UIViewController {
     private let nicknameTitleLabel = UILabel()
     private let nicknameTextField = UITextField()
     private let dividerLineView = UIView()
-    private let completeButton = UIButton(type: .system)
+    private let completeButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAttribute()
         setupLayout()
-        setupAttirbute()
     }
     
     @objc private func didTapCompleteButton() {
@@ -48,7 +48,7 @@ final class NicknameViewController: UIViewController {
 }
 
 extension NicknameViewController {
-    private func setupAttirbute() {
+    private func setupAttribute() {
         view.backgroundColor = .white
         nicknameTitleLabel.setText("Enter your name", attributes: Const.nicknameTitleAttributes)
         let paragraph = NSMutableParagraphStyle()
