@@ -15,8 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         // MARK: 초기화면 변경하면서 작업
-        let rootViewController = MainTabBarController()
-        window.rootViewController = rootViewController
+        let navigation = UINavigationController(rootViewController: RestaurantListViewController())
+        window.rootViewController = navigation
         window.makeKeyAndVisible()
         self.window = window
     }
