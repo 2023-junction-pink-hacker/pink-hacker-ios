@@ -11,20 +11,16 @@ import Combine
 private struct OrderSection: Hashable {
     let type: OrderSectionType
     let dotColor: UIColor?
-    let title: String? // for Footer
     let count: Int? // for Footer
-    let regardsFooterAsCell: Bool
     
-    init(type: OrderSectionType, dotColor: UIColor? = nil, title: String? = nil, count: Int? = nil, regardsFooterAsCell: Bool = false) {
+    init(type: OrderSectionType, dotColor: UIColor? = nil, count: Int? = nil) {
         self.type = type
         self.dotColor = dotColor
-        self.title = title
         self.count = count
-        self.regardsFooterAsCell = regardsFooterAsCell
     }
     
     var hasFooter: Bool {
-        title != nil || count != nil
+        count != nil
     }
 }
 
@@ -81,13 +77,8 @@ class OrderViewController: UIViewController {
         snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[0])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough with", options: ["wheat", "grain"])])
         snapshot.appendItems([OrderMultiSelectionItem(description: "dough aa", options: ["wheat", "grain"])])
-        
-        sections.append(.init(type: .multiSelection, dotColor: colors[1], title: "Add sauce type"))
-        snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[1], title: "Add sauce type")])
-        snapshot.appendItems([OrderMultiSelectionItem(description: "thickness", options: ["1.5", "2.0", "2.5"])])
-        dataSource.applySnapshotUsingReloadData(snapshot)
 
-        sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5, regardsFooterAsCell: true))
+        sections.append(.init(type: .multiSelection, dotColor: colors[1], count: 5))
         snapshot.appendSections([OrderSection(type: .multiSelection, dotColor: colors[2], count: 5)])
         snapshot.appendItems([OrderMultiSelectionItem(description: "cheese", options: ["1.5", "2.0", "2.5"])])
         dataSource.applySnapshotUsingReloadData(snapshot)
@@ -119,7 +110,7 @@ private extension OrderViewController {
                     let cell = collectionView.dequeueCell(OrderMultiSelectionCell.self, for: indexPath)
                     if let item = item as? OrderMultiSelectionItem {
                         let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
-                        let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.regardsFooterAsCell
+                        let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.hasFooter
                         cell?.dot.backgroundColor = section.dotColor
                         cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
                         cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
@@ -137,17 +128,7 @@ private extension OrderViewController {
             let section = self.sections[indexPath.section]
             switch kind {
             case UICollectionView.elementKindSectionFooter:
-                if let title = section.title {
-                    let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderMoreView.reuseIdentifier, for: indexPath)
-                    if let footer = footer as? OrderMoreView {
-                        footer.label.text = title
-                        footer.actionButton.pressHandler { _ in
-//                            var snapshot = self.dataSource.snapshot()
-//                            snapshot.appendItems(<#T##identifiers: [AnyHashable]##[AnyHashable]#>)
-                        }
-                    }
-                    return footer
-                } else if let count = section.count {
+                if let count = section.count {
                     let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OrderStepperFooter.reuseIdentifier, for: indexPath)
                     if let footer = footer as? OrderStepperFooter {
                         footer.value = count
