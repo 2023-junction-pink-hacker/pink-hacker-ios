@@ -70,7 +70,8 @@ class OrderViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviBar.snp.bottom)
-            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         self.collectionView = collectionView
         
@@ -94,14 +95,19 @@ class OrderViewController: UIViewController {
             $0.leading.bottom.trailing.equalToSuperview()
             $0.height.equalTo(72.0)
         }
-        bottomBarButton.titleLabel?.font = UILabel(weight: .semibold, size: 19, color: .white).font
-        bottomBarButton.setTitle("Done", for: .normal)
         bottomBarButton.pressHandler { [weak self] _ in
             self?.navigationController?.pushViewController(RestaurantListViewController(), animated: true)
         }
-        
         configureCollectionView()
         configureDataSource()
+        
+        let label = UILabel(weight: .semibold, size: 19, color: .white)
+        bottomBarButton.addSubview(label)
+        label.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(17)
+        }
+        label.text = "Done"
         
         cancellable = OrderRequest(productId: 1).publisher().sink(receiveCompletion: { _ in },
                                           receiveValue: { response in
@@ -233,7 +239,9 @@ private extension OrderViewController {
     
     func createLayout() -> UICollectionViewCompositionalLayout {
             UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-                let sectionInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 0, trailing: 20)
+                
+                let isLastSection = sectionIndex == self.sections.count - 1
+                let sectionInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: isLastSection ? 70 : 0, trailing: 20)
                 let section = self.sections[sectionIndex]
                 switch section.type {
                 case .title, .multiSelection:

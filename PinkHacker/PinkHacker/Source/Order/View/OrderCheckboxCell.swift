@@ -98,7 +98,7 @@ final class OrderCheckboxCell: UICollectionViewCell {
                 self?.selectionButton.label.text = option
             })
         }
-//        actionSheet.addAction(UIAlertAction(title: "Close", style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: "Close", style: .cancel))
         self.actionSheet = actionSheet
         
         checkboxButton.pressHandler { [weak self] _ in
@@ -171,9 +171,5 @@ final class SmallSelectionButton: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = frame.height/2
-    }
-    
-    func apply() {
-        enabled = true
     }
 }
