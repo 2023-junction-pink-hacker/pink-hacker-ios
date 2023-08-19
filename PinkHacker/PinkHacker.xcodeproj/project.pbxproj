@@ -29,6 +29,8 @@
 		0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E872A909ACE002110CF /* UIImage+.swift */; };
 		0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */; };
 		0DEA9E8E2A90A400002110CF /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA9E8D2A90A400002110CF /* MainTab.swift */; };
+		3B458BD12A90A5F0003DAAD8 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BD02A90A5F0003DAAD8 /* APIRequest.swift */; };
+		3B458BD32A90D059003DAAD8 /* TestAPiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B458BD22A90D059003DAAD8 /* TestAPiRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		0DEA9E872A909ACE002110CF /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		0DEA9E8B2A90A39F002110CF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0DEA9E8D2A90A400002110CF /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
+		3B458BD02A90A5F0003DAAD8 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIRequest.swift; path = "../../../../../../.Trash/pink-hacker-ios/PinkHacker/PinkHacker/Source/Global/APIRequest.swift"; sourceTree = "<group>"; };
+		3B458BD22A90D059003DAAD8 /* TestAPiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPiRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 				0DBD26882A907A60004975C4 /* AppDelegate.swift */,
 				0DBD268A2A907A60004975C4 /* SceneDelegate.swift */,
 				0DBD268C2A907A60004975C4 /* ViewController.swift */,
+				3B458BD22A90D059003DAAD8 /* TestAPiRequest.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				0DBD26A02A907DCA004975C4 /* Extension */,
+				3B458BD02A90A5F0003DAAD8 /* APIRequest.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -258,12 +264,14 @@
 				0DBD26A92A907F2C004975C4 /* UIWindow+.swift in Sources */,
 				0DBD26892A907A60004975C4 /* AppDelegate.swift in Sources */,
 				0DBD268B2A907A60004975C4 /* SceneDelegate.swift in Sources */,
+				3B458BD12A90A5F0003DAAD8 /* APIRequest.swift in Sources */,
 				0DBD26A32A907DE3004975C4 /* UIButton+.swift in Sources */,
 				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
 				0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */,
 				0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */,
 				0DBD26B02A908094004975C4 /* Int+.swift in Sources */,
 				0DBD26A52A907DF3004975C4 /* UICollectionView+.swift in Sources */,
+				3B458BD32A90D059003DAAD8 /* TestAPiRequest.swift in Sources */,
 				0DBD26A72A907EE8004975C4 /* UIConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
