@@ -32,6 +32,15 @@ final class FeedCell: UICollectionViewCell {
         setupLayout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
+        titleLabel.text = nil
+        contentLabel.text = nil
+        tagLabel.text = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

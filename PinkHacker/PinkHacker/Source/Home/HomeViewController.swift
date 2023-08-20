@@ -36,11 +36,11 @@ final class HomeViewController: UIViewController {
         setupAttribute()
         setupLayout()
         
-        fetchFeed()
+        fetchFeed(sort: .popular)
     }
     
-    private func fetchFeed() {
-        cancellable = FeedRequest(sort: .popular)
+    private func fetchFeed(sort: FeedRequest.Sort, completion: (() -> Void)? = nil) {
+        cancellable = FeedRequest(sort: sort)
             .publisher()
             .sink(
                 receiveCompletion: { _ in },
@@ -58,6 +58,7 @@ final class HomeViewController: UIViewController {
                     }
                     
                     self.collectionView.reloadData()
+                    completion?()
                 }
             )
         
@@ -67,12 +68,18 @@ final class HomeViewController: UIViewController {
         guard likedButton.isSelected == false else { return }
         self.likedButton.isSelected = self.likedButton.isSelected == false
         self.latestButton.isSelected = self.latestButton.isSelected == false
+        self.fetchFeed(sort: .popular) {
+            self.collectionView.scrollToItem(at: .init(item: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     @objc private func didTapLatestedButton() {
         guard latestButton.isSelected == false else { return }
         self.likedButton.isSelected = self.likedButton.isSelected == false
         self.latestButton.isSelected = self.latestButton.isSelected == false
+        self.fetchFeed(sort: .createdDate) {
+            self.collectionView.scrollToItem(at: .init(item: 0, section: 0), at: .top, animated: true)
+        }
     }
 }
 
