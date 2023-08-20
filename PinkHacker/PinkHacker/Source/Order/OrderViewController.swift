@@ -59,8 +59,6 @@ class OrderViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Const.backgroundColor
@@ -74,7 +72,7 @@ class OrderViewController: UIViewController {
             $0.bottom.equalToSuperview()
         }
         self.collectionView = collectionView
-        
+        collectionView.keyboardDismissMode = .onDrag
         naviBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
@@ -93,7 +91,8 @@ class OrderViewController: UIViewController {
         view.addSubview(bottomBarButton)
         bottomBarButton.snp.makeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.height.equalTo(72.0)
+            $0.height.equalTo(91.0)
+            
         }
         bottomBarButton.pressHandler { [weak self] _ in
             self?.navigationController?.pushViewController(RestaurantListViewController(), animated: true)

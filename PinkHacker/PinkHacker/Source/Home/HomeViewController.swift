@@ -26,11 +26,13 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
-    private var dummies: [FeedCell.ViewModel] = [
-        .init(id: 0, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite"),
-        .init(id: 1, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite"),
-        .init(id: 2, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite")
-    ]
+    private var dummies: [FeedCell.ViewModel] {
+        [
+            .init(id: 0, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite"),
+            .init(id: 1, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy"),
+            .init(id: 2, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite")
+        ]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +132,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueCell(FeedCell.self, for: indexPath)
-        else { return .init() }
+        guard let cell = collectionView.dequeueCell(FeedCell.self, for: indexPath) else { return .init() }
         cell.configure(viewModel: dummies[indexPath.item])
         return cell
     }
