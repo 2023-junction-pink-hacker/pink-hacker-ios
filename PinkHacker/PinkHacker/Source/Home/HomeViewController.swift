@@ -13,6 +13,8 @@ import Then
 final class HomeViewController: UIViewController {
     private var cancellable: AnyCancellable?
     
+    private var bag = Set<AnyCancellable>()
+    
     private let titleLabel = UILabel()
     private let likedButton = UIButton()
     private let latestButton = UIButton()
@@ -29,6 +31,8 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
+    private var lastTapped: FeedRequest.Sort = .popular
+    
     private var feedList: [FeedCell.ViewModel] = []
     
     override func viewDidLoad() {
@@ -36,6 +40,14 @@ final class HomeViewController: UIViewController {
         setupAttribute()
         setupLayout()
         
+        NotificationCenter.default.publisher(for: .registerRecipe)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.fetchFeed(sort: self.lastTapped) {
+                    self.collectionView.scrollToItem(at: .init(item: 0, section: 0), at: .top, animated: true)
+                }
+            }
+            .store(in: &bag)
         fetchFeed(sort: .popular)
     }
     
@@ -68,8 +80,10 @@ final class HomeViewController: UIViewController {
         guard likedButton.isSelected == false else { return }
         self.likedButton.isSelected = self.likedButton.isSelected == false
         self.latestButton.isSelected = self.latestButton.isSelected == false
-        self.fetchFeed(sort: .popular) {
-            self.collectionView.scrollToItem(at: .init(item: 0, section: 0), at: .top, animated: true)
+        
+        self.fetchFeed(sort: .popular) { [weak self] in
+            self?.lastTapped = .popular
+            self?.collectionView.scrollToItem(at: .init(item: 0, section: 0), at: .top, animated: true)
         }
     }
     
@@ -77,7 +91,10 @@ final class HomeViewController: UIViewController {
         guard latestButton.isSelected == false else { return }
         self.likedButton.isSelected = self.likedButton.isSelected == false
         self.latestButton.isSelected = self.latestButton.isSelected == false
-        self.fetchFeed(sort: .createdDate) {
+        
+        self.fetchFeed(sort: .createdDate) { [weak self] in
+            guard let self else { return }
+            self.lastTapped = .createdDate
             self.collectionView.scrollToItem(at: .init(item: 0, section: 0), at: .top, animated: true)
         }
     }

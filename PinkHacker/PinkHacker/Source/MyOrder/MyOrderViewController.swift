@@ -59,7 +59,7 @@ final class MyOrderViewController: UIViewController {
                             guard let item = self.sections[safe: indexPath.section]?.items[safe: indexPath.item],
                                   case let .myRecent(viewModel) = item
                             else { return }
-                            let registerViewController = RegisterViewController(viewModel: .init(pizzaName: viewModel.title))
+                            let registerViewController = RegisterViewController(viewModel: .init(recipeId: viewModel.id, pizzaName: viewModel.title))
                             self.navigationController?.pushViewController(registerViewController, animated: true)
                         }
                         .store(in: &cell.bag)

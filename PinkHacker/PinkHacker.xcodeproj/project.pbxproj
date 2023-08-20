@@ -11,6 +11,8 @@
 		0D008C262A91717200F10284 /* DescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C252A91717200F10284 /* DescriptionTextView.swift */; };
 		0D008C282A91772000F10284 /* PHNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D008C272A91772000F10284 /* PHNaviBar.swift */; };
 		0D100D372A918CB500B045FC /* FeedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D100D362A918CB500B045FC /* FeedRequest.swift */; };
+		0D100D392A91A7C600B045FC /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D100D382A91A7C600B045FC /* RegisterRequest.swift */; };
+		0D100D3B2A91AEC200B045FC /* RecentOrdersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D100D3A2A91AEC200B045FC /* RecentOrdersRequest.swift */; };
 		0D2397A92A915B59008E827E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2397A82A915B59008E827E /* HomeViewController.swift */; };
 		0D2397AB2A916001008E827E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2397AA2A916001008E827E /* FeedCell.swift */; };
 		0D24E78A2A912F9D00F95242 /* RecentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24E7892A912F9D00F95242 /* RecentOrderCell.swift */; };
@@ -72,6 +74,8 @@
 		0D008C252A91717200F10284 /* DescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTextView.swift; sourceTree = "<group>"; };
 		0D008C272A91772000F10284 /* PHNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHNaviBar.swift; sourceTree = "<group>"; };
 		0D100D362A918CB500B045FC /* FeedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRequest.swift; sourceTree = "<group>"; };
+		0D100D382A91A7C600B045FC /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
+		0D100D3A2A91AEC200B045FC /* RecentOrdersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentOrdersRequest.swift; sourceTree = "<group>"; };
 		0D2397A82A915B59008E827E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0D2397AA2A916001008E827E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		0D24E7892A912F9D00F95242 /* RecentOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentOrderCell.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				0D008C232A91676400F10284 /* RegisterViewController.swift */,
+				0D100D382A91A7C600B045FC /* RegisterRequest.swift */,
 				0D008C252A91717200F10284 /* DescriptionTextView.swift */,
 			);
 			path = Register;
@@ -309,6 +314,7 @@
 				0D24E78B2A91300700F95242 /* MyRecipeCell.swift */,
 				0DE321522A91236F00D8D9AC /* MyOrderHeaderView.swift */,
 				0D24E78F2A914B7500F95242 /* MyOrderTitleHeaderView.swift */,
+				0D100D3A2A91AEC200B045FC /* RecentOrdersRequest.swift */,
 			);
 			path = MyOrder;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				0DBD268D2A907A60004975C4 /* ViewController.swift in Sources */,
 				0DE321312A90C81700D8D9AC /* UIFont+.swift in Sources */,
 				0DBD26B22A9080A8004975C4 /* NSMutableAttributedString+.swift in Sources */,
+				0D100D392A91A7C600B045FC /* RegisterRequest.swift in Sources */,
 				3B458BF92A911111003DAAD8 /* OrderTitleViewCell.swift in Sources */,
 				3B458BCF2A90A544003DAAD8 /* UIApplication+.swift in Sources */,
 				0DBD26AB2A907F3E004975C4 /* UITableView+.swift in Sources */,
@@ -480,6 +487,7 @@
 				3B458BF62A9110EF003DAAD8 /* OrderViewController.swift in Sources */,
 				0DE321402A90DB1E00D8D9AC /* NicknameViewController.swift in Sources */,
 				0DBD26A52A907DF3004975C4 /* UICollectionView+.swift in Sources */,
+				0D100D3B2A91AEC200B045FC /* RecentOrdersRequest.swift in Sources */,
 				3B458BD32A90D059003DAAD8 /* TestAPiRequest.swift in Sources */,
 				0DBD26A72A907EE8004975C4 /* UIConstant.swift in Sources */,
 			);
