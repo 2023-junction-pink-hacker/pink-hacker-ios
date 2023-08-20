@@ -5,11 +5,14 @@
 //  Created by Woody Lee on 2023/08/20.
 //
 
+import Combine
 import UIKit
 import SnapKit
 import Then
 
 final class HomeViewController: UIViewController {
+    private var cancellable: AnyCancellable?
+    
     private let titleLabel = UILabel()
     private let likedButton = UIButton()
     private let latestButton = UIButton()
@@ -26,24 +29,38 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
-    private var dummies: [FeedCell.ViewModel] {
-        [
-            .init(id: 0, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite"),
-            .init(id: 1, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy"),
-            .init(id: 2, orderCount: 200, imageUrl: "", title: "I hate monday Pizza", content: "Hand-tossed crust, tangy sauce, melted mozzarella, and pepperoni slices create a timeless favorite")
-        ]
-    }
+    private var feedList: [FeedCell.ViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAttribute()
         setupLayout()
+        
+        fetchFeed()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private func fetchFeed() {
+        cancellable = FeedRequest(sort: .popular)
+            .publisher()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] response in
+                    guard let self else { return }
+                    
+                    self.feedList = response.map {
+                        .init(
+                            id: $0.id,
+                            orderCount: $0.orderCount,
+                            imageUrl: $0.imgUrl,
+                            title: "I hate money Pizza",
+                            content: $0.description
+                        )
+                    }
+                    
+                    self.collectionView.reloadData()
+                }
+            )
         
-        collectionView.reloadData()
     }
     
     @objc private func didTapLikedButton() {
@@ -128,17 +145,17 @@ extension HomeViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummies.count
+        return feedList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueCell(FeedCell.self, for: indexPath) else { return .init() }
-        cell.configure(viewModel: dummies[indexPath.item])
+        cell.configure(viewModel: feedList[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = dummies[safe: indexPath.item] else { return }
+        guard let item = feedList[safe: indexPath.item] else { return }
         let orderViewController = OrderViewController(viewType: .old(recipeName: item.title))
         orderViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(orderViewController, animated: true)
@@ -155,7 +172,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        guard let item = dummies[safe: indexPath.item] else { return .zero }
+        guard let item = feedList[safe: indexPath.item] else { return .zero }
         let height = FeedCell.height(item)
         return .init(width: screenWidth - 50, height: height)
     }
