@@ -31,4 +31,24 @@ class APIRequest<Response: Codable> {
             }
             .eraseToAnyPublisher()
     }
+    
+    func putPublisher(_ body: Encodable) -> AnyPublisher<Response, APIError> {
+        var request = APIRequest(path: "\(host)\(path)")
+        print("# \(body.dictionary)")
+        return AF.request(URL(string: "\(host)\(path)")!, method: .put, parameters: body.dictionary)
+            .publishDecodable(type: Response.self)
+            .value()
+            .mapError { error in
+                print("# error: \(error)")
+                return APIError.unknown
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+private extension Encodable {
+    var dictionary: [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+    }
 }

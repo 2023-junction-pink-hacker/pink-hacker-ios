@@ -11,6 +11,8 @@ import UIKit
 import SnapKit
 
 final class RegisterViewController: UIViewController {
+    var cancalleble: AnyCancellable?
+    
     private let naviBar = PHNaviBar(frame: .zero)
     private let imageView = UIImageView()
     private let addButton = UIButton(type: .system)
@@ -20,6 +22,7 @@ final class RegisterViewController: UIViewController {
     private let summaryView = RecipeSummaryView()
     
     struct ViewModel {
+        var recipeId: Int
         var pizzaName: String
     }
     
@@ -61,12 +64,14 @@ final class RegisterViewController: UIViewController {
         addButton.layer.borderColor = Const.plusColor.cgColor
         addButton.layer.borderWidth = 1.4
         addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
         submitButton.setTitleColor(.white, for: .normal)
         submitButton.setBackgroundColor(Const.submitButtonColor, for: .normal)
         submitButton.setBackgroundColor(Const.disabledSubmitButtonColor, for: .disabled)
+        let attrbiutedTitle = NSMutableAttributedString.build(string: "Submit", attributes: .init(weight: .gellix(.semibold), size: 19, textColor: .white))
+        submitButton.setAttributedTitle(attrbiutedTitle, for: .normal)
         submitButton.isEnabled = false
-        submitButton.setTitle("Sumbit", for: .normal)
-        
+        submitButton.titleEdgeInsets = .init(top: -18, left: 0, bottom: 18, right: 0)
         titleLabel.setText(viewModel.pizzaName, attributes: Const.titleAttributes)
         titleLabel.textAlignment = .center
         textView.placeholderText = "Describe your recipe in up to 100 characters"
@@ -128,8 +133,8 @@ final class RegisterViewController: UIViewController {
         
         submitButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(70)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(91)
         }
         
         summaryView.apply()
@@ -146,6 +151,18 @@ final class RegisterViewController: UIViewController {
         imagePicker.allowsEditing = true // 사진 선택 후 편집 가능 여부
         
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapSubmitButton() {
+        guard let comment else { return }
+        
+        cancalleble = RegisterRequest()
+            .putPublisher(RegisterRequestDatat(recipeId: 5, description: comment))
+            .sink { _ in } receiveValue: { [weak self] _ in
+                NotificationCenter.default.post(name: .registerRecipe, object: nil)
+                self?.navigationController?.popViewController(animated: true)
+            }
+
     }
     
     private enum Const {
