@@ -181,6 +181,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = feedList[safe: indexPath.item] else { return }
         let orderViewController = OrderViewController(viewType: .old(recipeName: item.title))
+        
         orderViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(orderViewController, animated: true)
     }

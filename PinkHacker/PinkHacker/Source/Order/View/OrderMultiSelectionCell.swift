@@ -73,7 +73,7 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
     
     var actionButtonSelected: ((String?) -> Void)?
     
-    func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true, actionButtonSelected: ((String?) -> Void)? = nil) {
+    func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true, shouldSelectRandomItem: Bool = false, actionButtonSelected: ((String?) -> Void)? = nil) {
         self.actionButtonSelected = actionButtonSelected
         descriptionLabel.text = item.description
         dot.isHidden = !shouldCornerTop
@@ -96,6 +96,14 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
         }
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if shouldSelectRandomItem {
+            let random = Int.random(in: 0..<item.options.count)
+            selectionButton.label.text = item.options[random]
+            selectionButton.selected = true
+            self.actionButtonSelected?(item.options[random])
+            self.actionButtonSelected = nil
+        }
         
         item.options.forEach { option in
             actionSheet.addAction(UIAlertAction(title: option, style: .default) { [weak self] _ in

@@ -196,6 +196,11 @@ private extension OrderViewController {
                 switch section.type {
                 case .title:
                     let cell = collectionView.dequeueCell(OrderTitleViewCell.self, for: indexPath)!
+                    if case .old(let data) = viewType {
+                        cell.textfield.text = data
+                        selected = 5
+                        isTitleEmpty = false
+                    }
                     cell.textfield.addAction(UIAction(handler: { field in
                         self.isTitleEmpty = (field.sender as? UITextField)?.text?.isEmpty ?? false
                     }), for: .editingChanged)
@@ -208,7 +213,14 @@ private extension OrderViewController {
                             let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
                             let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.hasFooter
                             cell?.dot.backgroundColor = section.dotColor
-                            cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom) { selectedItem in
+                            
+                            var shouldSelectRandom = false
+                            if case .old(_) = viewType {
+                                shouldSelectRandom = true
+                            }
+                            cell?.apply(item, shouldCornerTop: indexPath.item == 0,
+                                        shouldCornerBottom: shouldCornerBottom,
+                            shouldSelectRandomItem: shouldSelectRandom) { selectedItem in
                                 self.selected += 1
                             }
                             cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
@@ -226,6 +238,10 @@ private extension OrderViewController {
                     case let item as OrderOptionalSelectionItem:
                         let cell = collectionView.dequeueCell(OrderCheckboxCell.self, for: indexPath)
                         let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
+                        if case .old(_) = viewType {
+                            let random = Int.random(in: 0...2)
+                            cell?.checkboxButton.isSelected = random == 0
+                        }
                         cell?.apply(item, shouldCornerBottom: numberOfItems - 1 == indexPath.item)
                         cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
                             if let actionSheet = cell?.actionSheet {
