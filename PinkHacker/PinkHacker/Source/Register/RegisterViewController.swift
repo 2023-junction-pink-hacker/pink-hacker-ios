@@ -155,13 +155,6 @@ final class RegisterViewController: UIViewController {
     
     @objc private func didTapSubmitButton() {
         guard let comment else { return }
-        
-        cancalleble = RegisterRequest()
-            .putPublisher(RegisterRequestDatat(recipeId: 5, description: comment))
-            .sink { _ in } receiveValue: { [weak self] _ in
-                NotificationCenter.default.post(name: .registerRecipe, object: nil)
-                self?.navigationController?.popViewController(animated: true)
-            }
 
     }
     
