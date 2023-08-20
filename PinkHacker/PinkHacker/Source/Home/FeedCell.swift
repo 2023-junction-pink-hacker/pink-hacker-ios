@@ -53,7 +53,7 @@ final class FeedCell: UICollectionViewCell {
         if let urlString = viewModel.imageUrl, let url = URL(string: urlString)  {
             imageView.kf.setImage(with: url, options: [.transition(.fade(0.1))])
         }
-        
+        imageView.layer.masksToBounds = true
         contentLabel.numberOfLines = 3
     }
 }

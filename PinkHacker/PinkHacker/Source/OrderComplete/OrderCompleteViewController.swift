@@ -161,10 +161,10 @@ extension OrderCompleteViewController.ViewModel {
         dateFormatter.dateFormat = "HH:mm"
         
         if let date = dateFormatter.date(from: self.endTime) {
+            dateFormatter.locale = .init(identifier: "en")
             dateFormatter.dateFormat = "h:mm "
             let time = dateFormatter.string(from: date)
             dateFormatter.dateFormat = "a"
-            dateFormatter.locale = .init(identifier: "en")
             let unit = dateFormatter.string(from: date)
             return (time, unit)
         }
