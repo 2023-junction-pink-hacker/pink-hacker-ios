@@ -39,7 +39,7 @@ final class FeedCell: UICollectionViewCell {
         tagLabel.setText("\(viewModel.orderCount) orders", attributes: Const.tagAttributes)
         titleLabel.setText(viewModel.title, attributes: Const.titleAttributes)
         contentLabel.setText(viewModel.content, attributes: Const.contentAttributes)
-        imageView.image = .img_test_food
+        
         contentLabel.numberOfLines = 3
     }
 }

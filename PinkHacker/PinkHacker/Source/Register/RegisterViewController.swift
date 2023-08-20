@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 final class RegisterViewController: UIViewController {
-    private let imagePicker = UIImagePickerController()
+    private let naviBar = PHNaviBar(frame: .zero)
     private let imageView = UIImageView()
     private let addButton = UIButton(type: .system)
     private let submitButton = UIButton(type: .system)
@@ -43,8 +43,16 @@ final class RegisterViewController: UIViewController {
         setupAttribute()
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        view.endEditing(true)
+    }
+    
     private func setupAttribute() {
         view.backgroundColor = Const.backgroundColor
+        naviBar.title = "Add your recipe"
+        naviBar.leftBarItem = .back
+        naviBar.leftButton.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
         addButton.backgroundColor = .clear
         addButton.setImage(.ic_plus, for: .normal)
         addButton.tintColor = Const.plusColor
@@ -77,6 +85,7 @@ final class RegisterViewController: UIViewController {
     private func setupLayout() {
         let containerView = UIView()
         
+        view.addSubview(naviBar)
         view.addSubview(containerView)
         view.addSubview(submitButton)
         containerView.addSubview(imageView)
@@ -85,8 +94,12 @@ final class RegisterViewController: UIViewController {
         containerView.addSubview(textView)
         containerView.addSubview(summaryView)
         
-        containerView.snp.makeConstraints { make in
+        naviBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(naviBar.snp.bottom)
             make.horizontalEdges.equalToSuperview()
         }
         imageView.snp.makeConstraints { make in
@@ -122,7 +135,12 @@ final class RegisterViewController: UIViewController {
         summaryView.apply()
     }
     
+    @objc private func didTapLeftButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc private func didTapAddButton() {
+        let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true // 사진 선택 후 편집 가능 여부

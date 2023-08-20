@@ -49,13 +49,15 @@ final class OrderCompleteViewController: UIViewController {
     }
     
     @objc private func didTapViewOrderButton() {
-        
+        NotificationCenter.default.post(name: .didTapViewOrder, object: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func animatePizza() {
+        self.view.layoutIfNeeded()
         UIView.animate(
             withDuration: 0.7,
-            delay: 0,
+            delay: 0.3,
             options: [.autoreverse, .repeat],
             animations: {
                 self.pizzaImageView.frame.origin.y -= 30
@@ -162,6 +164,7 @@ extension OrderCompleteViewController.ViewModel {
             dateFormatter.dateFormat = "h:mm "
             let time = dateFormatter.string(from: date)
             dateFormatter.dateFormat = "a"
+            dateFormatter.locale = .init(identifier: "en")
             let unit = dateFormatter.string(from: date)
             return (time, unit)
         }

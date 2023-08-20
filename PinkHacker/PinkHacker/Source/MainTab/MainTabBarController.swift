@@ -5,12 +5,15 @@
 //  Created by Woody Lee on 2023/08/19.
 //
 
+import Combine
 import UIKit
 import Then
 
 final class MainTabBarController: UITabBarController {
     private var tabItems: [MainTab] = [.home, .myOrder]
     private let uploadButton = UIButton()
+    
+    private var bag = Set<AnyCancellable>()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -26,6 +29,7 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupNotification()
     }
     
     final class MainTabBar: UITabBar {
@@ -40,6 +44,14 @@ final class MainTabBarController: UITabBarController {
         let orderViewController = OrderViewController(viewType: .new)
         orderViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(orderViewController, animated: true)
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.publisher(for: .didTapViewOrder)
+            .sink { [weak self] _ in
+                self?.selectedIndex = 1
+            }
+            .store(in: &bag)
     }
 }
 

@@ -44,7 +44,8 @@ final class OrderTitleViewCell: UICollectionViewCell {
         
         let textfield = UITextField()
         textfield.font = .gellizFont(weight: .semibold, size: 18)
-        textfield.attributedPlaceholder = NSAttributedString(string: placeholder)
+        textfield.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.29, alpha: 1)
+        textfield.attributedPlaceholder = NSMutableAttributedString.build(string: placeholder, attributes: .init(weight: .gellix(.semibold), size: 18, textColor: UIColor(red: 0.76, green: 0.76, blue: 0.74, alpha: 1)))
         contentView.addSubview(textfield)
         textfield.snp.makeConstraints {
             $0.leading.equalTo(dot.snp.trailing).offset(16.0)
