@@ -9,6 +9,7 @@ import Combine
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 final class FeedCell: UICollectionViewCell {
     private let tagView = UIView()
@@ -20,7 +21,7 @@ final class FeedCell: UICollectionViewCell {
     struct ViewModel: Hashable {
         var id: Int
         var orderCount: Int
-        var imageUrl: String
+        var imageUrl: String?
         var title: String
         var content: String
     }
@@ -31,6 +32,15 @@ final class FeedCell: UICollectionViewCell {
         setupLayout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
+        titleLabel.text = nil
+        contentLabel.text = nil
+        tagLabel.text = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -39,6 +49,10 @@ final class FeedCell: UICollectionViewCell {
         tagLabel.setText("\(viewModel.orderCount) orders", attributes: Const.tagAttributes)
         titleLabel.setText(viewModel.title, attributes: Const.titleAttributes)
         contentLabel.setText(viewModel.content, attributes: Const.contentAttributes)
+        imageView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.93, alpha: 1)
+        if let urlString = viewModel.imageUrl, let url = URL(string: urlString)  {
+            imageView.kf.setImage(with: url, options: [.transition(.fade(0.1))])
+        }
         
         contentLabel.numberOfLines = 3
     }

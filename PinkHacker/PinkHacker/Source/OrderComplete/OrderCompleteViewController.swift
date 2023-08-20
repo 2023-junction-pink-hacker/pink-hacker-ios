@@ -57,7 +57,7 @@ final class OrderCompleteViewController: UIViewController {
         self.view.layoutIfNeeded()
         UIView.animate(
             withDuration: 0.7,
-            delay: 0.3,
+            delay: 0,
             options: [.autoreverse, .repeat],
             animations: {
                 self.pizzaImageView.frame.origin.y -= 30

@@ -53,7 +53,7 @@ final class MyOrderHeaderView: UIView {
         nameLabel.setText(viewModel.name, attributes: Const.pizzaNameAttributes)
         receivedLabel.setText("Received", attributes: Const.foodStageAttributes)
         cookingLabel.setText("Cooking", attributes: Const.foodStageAttributes)
-        finishLabel.setText("Finish", attributes: Const.foodNotStageAttributes)
+        finishLabel.setText("Finish", attributes: Const.foodStageAttributes)
         
         switch viewModel.progress {
         case .finished: break
@@ -70,6 +70,8 @@ final class MyOrderHeaderView: UIView {
     private func updateLeftTimeLabel() {
         if let leftTime = viewModel?.leftTime {
             leftTimeLabel.setText(leftTime, attributes: Const.timeAttributes)
+        } else {
+            leftTimeLabel.setText("It’s ready!", attributes: Const.timeAttributes)
         }
     }
 }
@@ -77,7 +79,7 @@ final class MyOrderHeaderView: UIView {
 extension MyOrderHeaderView {
     private func setupAttribute() {
         descriptionLabel.setText("My menu", attributes: Const.descriptionAttributes)
-        progressBar.backgroundColor = Const.progressbarColor
+        progressBar.backgroundColor = .black
     }
     
     private func setupLayout() {
