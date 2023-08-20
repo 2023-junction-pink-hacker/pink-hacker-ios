@@ -71,7 +71,10 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
         self.dot = dot
     }
     
-    func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true) {
+    var actionButtonSelected: ((String?) -> Void)?
+    
+    func apply(_ item: OrderMultiSelectionItem, shouldCornerTop: Bool = true, shouldCornerBottom: Bool = true, actionButtonSelected: ((String?) -> Void)? = nil) {
+        self.actionButtonSelected = actionButtonSelected
         descriptionLabel.text = item.description
         dot.isHidden = !shouldCornerTop
         if shouldCornerTop && shouldCornerBottom {
@@ -98,6 +101,8 @@ final class OrderMultiSelectionCell: UICollectionViewCell {
             actionSheet.addAction(UIAlertAction(title: option, style: .default) { [weak self] _ in
                 self?.selectionButton.label.text = option
                 self?.selectionButton.selected = true
+                self?.actionButtonSelected?(option)
+                self?.actionButtonSelected = nil
             })
         }
         actionSheet.addAction(UIAlertAction(title: "Close", style: .cancel))

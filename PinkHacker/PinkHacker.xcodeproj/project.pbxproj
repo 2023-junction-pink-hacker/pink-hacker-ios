@@ -64,6 +64,7 @@
 		3B4CA39D2A914D4D00D807E0 /* OrderSimpleTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */; };
 		3B4CA3A12A91510700D807E0 /* OrderCheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */; };
 		3B4CA3A32A9161D400D807E0 /* OrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA3A22A9161D400D807E0 /* OrderRequest.swift */; };
+		3B4CA3A72A91A21F00D807E0 /* PostOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CA3A62A91A21F00D807E0 /* PostOrderRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		3B4CA39C2A914D4C00D807E0 /* OrderSimpleTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSimpleTitleCell.swift; sourceTree = "<group>"; };
 		3B4CA3A02A91510700D807E0 /* OrderCheckboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCheckboxCell.swift; sourceTree = "<group>"; };
 		3B4CA3A22A9161D400D807E0 /* OrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRequest.swift; sourceTree = "<group>"; };
+		3B4CA3A62A91A21F00D807E0 /* PostOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOrderRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 				3B458BF72A911109003DAAD8 /* View */,
 				3B458BF52A9110EF003DAAD8 /* OrderViewController.swift */,
 				3B4CA3A22A9161D400D807E0 /* OrderRequest.swift */,
+				3B4CA3A62A91A21F00D807E0 /* PostOrderRequest.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				0DBD26B42A9080B4004975C4 /* Notification+.swift in Sources */,
 				0DE321512A91223B00D8D9AC /* MyOrderViewController.swift in Sources */,
 				0DEA9E882A909ACE002110CF /* UIImage+.swift in Sources */,
+				3B4CA3A72A91A21F00D807E0 /* PostOrderRequest.swift in Sources */,
 				0DEA9E8C2A90A39F002110CF /* MainTabBarController.swift in Sources */,
 				0DBD26B02A908094004975C4 /* Int+.swift in Sources */,
 				3B458BF62A9110EF003DAAD8 /* OrderViewController.swift in Sources */,

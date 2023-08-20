@@ -63,8 +63,10 @@ final class OrderCheckboxCell: UICollectionViewCell {
         self.selectionButton = selectionButton
     }
     
-    func apply(_ item: OrderOptionalSelectionItem, shouldCornerBottom: Bool = false) {
-        
+    var actionButtonSelected: ((String?) -> Void)?
+    
+    func apply(_ item: OrderOptionalSelectionItem, shouldCornerBottom: Bool = false, actionButtonSelected: ((String?) -> Void)? = nil) {
+        self.actionButtonSelected = actionButtonSelected
         if !item.description.isEmpty {
             label.text = item.description
             checkboxButton.isHidden = false
@@ -96,6 +98,8 @@ final class OrderCheckboxCell: UICollectionViewCell {
         item.options?.forEach { option in
             actionSheet.addAction(UIAlertAction(title: option, style: .default) { [weak self] _ in
                 self?.selectionButton.label.text = option
+                self?.actionButtonSelected?(option)
+                self?.actionButtonSelected = nil
             })
         }
         actionSheet.addAction(UIAlertAction(title: "Close", style: .cancel))

@@ -38,6 +38,21 @@ class OrderViewController: UIViewController {
     private var dataSource: DataSource!
     private var sections: [OrderSection] = []
     private var bottomBar: UIView!
+    private var doneButton: UIButton!
+    
+    private var isTitleEmpty = true {
+        didSet {
+            doneButton.isEnabled = selected >= 5 && !isTitleEmpty
+            doneButton.backgroundColor = doneButton.isEnabled ? .label0 : UIColor(red: 0.85, green: 0.84, blue: 0.84, alpha: 1)
+        }
+    }
+    private var result = SubmissionRequestDataModel()
+    private var selected: Int = 0 {
+        didSet {
+            doneButton.isEnabled = selected >= 5 && !isTitleEmpty
+            doneButton.backgroundColor = doneButton.isEnabled ? .label0 : UIColor(red: 0.85, green: 0.84, blue: 0.84, alpha: 1)
+        }
+    }
     
     enum Section: Int {
         case main
@@ -87,7 +102,7 @@ class OrderViewController: UIViewController {
         }
         
         let bottomBarButton = UIButton()
-        bottomBarButton.backgroundColor = .black
+        bottomBarButton.backgroundColor = UIColor(red: 0.85, green: 0.84, blue: 0.84, alpha: 1)
         view.addSubview(bottomBarButton)
         bottomBarButton.snp.makeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
@@ -97,6 +112,8 @@ class OrderViewController: UIViewController {
         bottomBarButton.pressHandler { [weak self] _ in
             self?.navigationController?.pushViewController(RestaurantListViewController(), animated: true)
         }
+        self.doneButton = bottomBarButton
+        bottomBarButton.isEnabled = false
         configureCollectionView()
         configureDataSource()
         
@@ -178,7 +195,11 @@ private extension OrderViewController {
             if let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section] {
                 switch section.type {
                 case .title:
-                    return collectionView.dequeueCell(OrderTitleViewCell.self, for: indexPath)!
+                    let cell = collectionView.dequeueCell(OrderTitleViewCell.self, for: indexPath)!
+                    cell.textfield.addAction(UIAction(handler: { field in
+                        self.isTitleEmpty = (field.sender as? UITextField)?.text?.isEmpty ?? false
+                    }), for: .editingChanged)
+                    return cell
                 case .multiSelection:
                     switch item {
                     case let item as OrderMultiSelectionItem:
@@ -187,7 +208,9 @@ private extension OrderViewController {
                             let numberOfItems = collectionView.numberOfItems(inSection: indexPath.section)
                             let shouldCornerBottom = (numberOfItems - 1 == indexPath.item) && !section.hasFooter
                             cell?.dot.backgroundColor = section.dotColor
-                            cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom)
+                            cell?.apply(item, shouldCornerTop: indexPath.item == 0, shouldCornerBottom: shouldCornerBottom) { selectedItem in
+                                self.selected += 1
+                            }
                             cell?.selectionButton.actionButton.pressHandler { [weak self] _ in
                                 if let actionSheet = cell?.actionSheet {
                                     self?.present(actionSheet, animated: true)
@@ -298,5 +321,18 @@ struct OrderOptionalSelectionItem: Hashable {
         self.items = items
         self.selectedItem = selectedItem
         self.count = count
+    }
+}
+
+final class SubmissionRequestDataModel: Codable {
+    var name: String?
+    var dough: String?
+    var thickness: String?
+    var amount: String?
+    var sauce: String?
+    var cheese: String?
+    
+    var isDone: Bool {
+        dough != nil && thickness != nil && amount != nil && sauce != nil && cheese != nil
     }
 }
